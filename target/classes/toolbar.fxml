@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+
+<ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="700.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="util.Toolbar">
+   <buttons>
+      <Button fx:id="btnContact" mnemonicParsing="false" onAction="#onClickContactPage" text="Contact" />
+      <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#onLogout" text="Logout" />
+      <Button fx:id="btnPageLogin" alignment="CENTER" mnemonicParsing="false" onAction="#onClickLoginPage" text="Login" />
+      <Button fx:id="btnPageRegister" mnemonicParsing="false" onAction="#onClickPageRegister" text="Register" />
+      <Button fx:id="btnMyAccount" mnemonicParsing="false" onAction="#onClickMyAccount" text="My Account" />
+   </buttons>
+</ButtonBar>
