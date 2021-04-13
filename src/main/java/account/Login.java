@@ -16,10 +16,8 @@ public class Login {
     @FXML
     public Button btnLogin;
 
-    private final SqlDataManager sqlDataManager;
-
     public Login() {
-        sqlDataManager = new SqlDataManager();
+        SqlDataManager.init();
     }
 
     @FXML
@@ -35,7 +33,7 @@ public class Login {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
 
-        if (sqlDataManager.verifyCredentials(username, password)) {
+        if (SqlDataManager.verifyCredentials(username, password)) {
             Util.alertConfirmation("Success!", "You have successfully logged in.");
             Session.username = username;
         } else {

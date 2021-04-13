@@ -19,12 +19,6 @@ public class ContactUs {
     @FXML
     public TextArea txtMessage;
 
-    private SqlDataManager sqlDataManager;
-
-    public ContactUs() {
-        sqlDataManager = new SqlDataManager();
-    }
-
     @FXML
     public void initialize() {
         btnSubmit.setDefaultButton(true);
@@ -41,7 +35,7 @@ public class ContactUs {
         }
         MessageType msgType = getMessageType(chobxMsgType.getValue());
         Message message = new Message(msgType.getNum(), txtMessage.getText(), Session.username);
-        sqlDataManager.addMessage(message);
+        SqlDataManager.addMessage(message);
         Util.alertConfirmation("Success!", "Message Sent!");
     }
 

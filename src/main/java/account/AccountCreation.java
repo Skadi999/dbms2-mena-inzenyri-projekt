@@ -28,12 +28,7 @@ public class AccountCreation {
     @FXML
     private TextField txtLastName;
 
-    private final SqlDataManager sqlDataManager;
     private ArrayList<AccountRegular> regularAccounts;
-
-    public AccountCreation() {
-        sqlDataManager = new SqlDataManager();
-    }
 
     @FXML
     public void initialize() {
@@ -41,7 +36,7 @@ public class AccountCreation {
     }
 
     public void onAccRegister(ActionEvent actionEvent) {
-        regularAccounts = sqlDataManager.getAllRegularAccounts();
+        regularAccounts = SqlDataManager.getAllRegularAccounts();
         if (!isUsernameUnique()) {
             Util.alertError("Registration error", "Username is taken.");
         } else if (!verifyPassword()) {
@@ -50,7 +45,7 @@ public class AccountCreation {
         } else {
             AccountRegular accRegular = new AccountRegular(txtUsername.getText(), txtPassword.getText(),
                     txtName.getText(), txtLastName.getText());
-            sqlDataManager.addRegularUser(accRegular);
+            SqlDataManager.addRegularUser(accRegular);
         }
     }
 

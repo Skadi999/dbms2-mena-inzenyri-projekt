@@ -2,10 +2,12 @@ package model;
 
 import java.sql.*;
 import java.util.ArrayList;
-
+//singleton
 public class SqlDataManager {
-    private Connection connection;
-    public SqlDataManager() {
+    private static SqlDataManager sqlDataManager;
+    private static Connection connection;
+
+    private SqlDataManager() {
         try {
             String url = "jdbc:mysql://localhost:3306/mydb";
             String dbUsername = "root";
@@ -16,7 +18,20 @@ public class SqlDataManager {
         }
     }
 
-    public void addRegularUser(AccountRegular user) {
+    public static void init() {
+        if (sqlDataManager == null) {
+            sqlDataManager = new SqlDataManager();
+        }
+    }
+
+    public SqlDataManager getInstance() {
+        if (sqlDataManager == null) {
+            sqlDataManager = new SqlDataManager();
+        }
+        return sqlDataManager;
+    }
+
+    public static void addRegularUser(AccountRegular user) {
         try (Statement statement = connection.createStatement()) {
             statement.execute("insert into beznyucet(jmeno, prijmeni, jmenoUctu, heslo) values('" +
                     user.getName() + "','" + user.getLastName() + "','" +
@@ -26,7 +41,7 @@ public class SqlDataManager {
         }
     }
 
-    public void addMessage(Message message) {
+    public static void addMessage(Message message) {
         try (Statement statement = connection.createStatement()) {
             statement.execute("insert into zprava(druhZpravy, text, odesilatel) values('" +
                     message.getMessageType() + "','" + message.getMessage() + "','" +
@@ -37,7 +52,7 @@ public class SqlDataManager {
     }
 
     //regular accounts WITHOUT transactions and sold coins
-    public ArrayList<AccountRegular> getAllRegularAccounts() {
+    public static ArrayList<AccountRegular> getAllRegularAccounts() {
         ArrayList<AccountRegular> accounts = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("select * from beznyucet");
@@ -58,7 +73,7 @@ public class SqlDataManager {
     }
 
 
-    public boolean verifyCredentials(String username, String password) {
+    public static boolean verifyCredentials(String username, String password) {
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("select * from beznyucet where jmenoUctu='"
                     + username + "' and heslo='" + password + "'");
@@ -69,7 +84,7 @@ public class SqlDataManager {
         return false;
     }
 
-    public void changePassword(String username, String newPassword) {
+    public static void changePassword(String username, String newPassword) {
         try (Statement statement = connection.createStatement()) {
             statement.execute("update beznyucet set heslo ='" + newPassword +
                     "' where jmenoUctu='" + username + "'");
@@ -78,7 +93,7 @@ public class SqlDataManager {
         }
     }
 
-    public void updateProfile(String username, String name, String lastName) {
+    public static void updateProfile(String username, String name, String lastName) {
         try (Statement statement = connection.createStatement()) {
             statement.execute("update beznyucet set jmeno ='" + name +
                     "', prijmeni='" + lastName + "' where jmenoUctu='" + username + "'");
@@ -87,7 +102,7 @@ public class SqlDataManager {
         }
     }
 
-    public AccountRegular getRegularUserByUsername(String username) {
+    public static AccountRegular getRegularUserByUsername(String username) {
         AccountRegular acc;
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("select * from beznyucet where jmenoUctu='"

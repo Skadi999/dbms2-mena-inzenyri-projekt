@@ -23,12 +23,6 @@ public class Toolbar {
     @FXML
     public Button btnContact;
 
-//    private Session session;
-
-    public Toolbar() {
-//        session = Main.getSession();
-    }
-
     public void onClickMyAccount(ActionEvent actionEvent) {
         if (Session.username == null) {
             Util.alertError("Cannot access My Account", "You must be logged in.");

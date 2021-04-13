@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 import model.AccountRegular;
 import model.Session;
 import model.SqlDataManager;
-import sample.Main;
 import util.Util;
 
 public class MyAccount {
@@ -26,14 +25,10 @@ public class MyAccount {
     @FXML
     public Button btnUpdateProfile;
 
-//    private Session session;
-    private final SqlDataManager sqlDataManager;
     private final AccountRegular acc;
 
     public MyAccount() {
-//        session = Main.getSession();
-        sqlDataManager = new SqlDataManager();
-        acc = sqlDataManager.getRegularUserByUsername(Session.username);
+        acc = SqlDataManager.getRegularUserByUsername(Session.username);
     }
 
     //https://stackoverflow.com/questions/34785417/javafx-fxml-controller-constructor-vs-initialize-method
@@ -50,7 +45,8 @@ public class MyAccount {
             Util.alertError("Passwords do not match", "The values in New Password and Confirm Password" +
                     "must be the same!");
         } else {
-            sqlDataManager.changePassword(acc.getUsername(), txtNewPw.getText());
+            SqlDataManager.changePassword(acc.getUsername(), txtNewPw.getText());
+            Util.alertConfirmation("Success!", "Password successfully changed.");
         }
     }
 
@@ -59,6 +55,6 @@ public class MyAccount {
     }
 
     public void updateProfile(ActionEvent actionEvent) {
-        sqlDataManager.updateProfile(Session.username, txtName.getText(), txtLastName.getText());
+        SqlDataManager.updateProfile(Session.username, txtName.getText(), txtLastName.getText());
     }
 }
