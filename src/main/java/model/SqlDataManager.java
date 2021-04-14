@@ -1,7 +1,10 @@
 package model;
 
+import enums.AccountType;
+
 import java.sql.*;
 import java.util.ArrayList;
+
 //singleton
 public class SqlDataManager {
     private static SqlDataManager sqlDataManager;
@@ -26,9 +29,12 @@ public class SqlDataManager {
 
     public static void addRegularUser(AccountRegular user) {
         try (Statement statement = connection.createStatement()) {
-            statement.execute("insert into beznyucet(jmeno, prijmeni, jmenoUctu, heslo) values('" +
+            statement.execute("insert into ucet(jmeno, prijmeni, jmenoUctu, heslo, typUctu) values('" +
                     user.getName() + "','" + user.getLastName() + "','" +
-                    user.getUsername() + "','" + user.getPassword() + "')");
+                    user.getUsername() + "','" + user.getPassword() + "','" + user.getAccountType().getNum() + "')");
+
+            statement.execute("insert into beznyucet(jmenoUctu) values('" +
+                    user.getUsername() + "')");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -44,19 +50,13 @@ public class SqlDataManager {
         }
     }
 
-    //regular accounts WITHOUT transactions and sold coins
-    public static ArrayList<AccountRegular> getAllRegularAccounts() {
-        ArrayList<AccountRegular> accounts = new ArrayList<>();
+    //todo create separate method for choosing account based on type
+    public static ArrayList<Account> getAllAccounts() {
+        ArrayList<Account> accounts = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("select * from beznyucet");
+            ResultSet resultSet = statement.executeQuery("select * from ucet");
             while (resultSet.next()) {
-                AccountRegular acc = new AccountRegular(
-                        resultSet.getInt("id"),
-                        resultSet.getString("jmenoUctu"),
-                        resultSet.getString("heslo"),
-                        resultSet.getString("jmeno"),
-                        resultSet.getString("prijmeni"));
-                accounts.add(acc);
+                accounts.add(getAccountByAccountType(resultSet));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -68,7 +68,7 @@ public class SqlDataManager {
 
     public static boolean verifyCredentials(String username, String password) {
         try (Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("select * from beznyucet where jmenoUctu='"
+            ResultSet resultSet = statement.executeQuery("select * from ucet where jmenoUctu='"
                     + username + "' and heslo='" + password + "'");
             if (resultSet.next()) return true;
         } catch (SQLException throwables) {
@@ -79,7 +79,7 @@ public class SqlDataManager {
 
     public static void changePassword(String username, String newPassword) {
         try (Statement statement = connection.createStatement()) {
-            statement.execute("update beznyucet set heslo ='" + newPassword +
+            statement.execute("update ucet set heslo ='" + newPassword +
                     "' where jmenoUctu='" + username + "'");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -88,26 +88,19 @@ public class SqlDataManager {
 
     public static void updateProfile(String username, String name, String lastName) {
         try (Statement statement = connection.createStatement()) {
-            statement.execute("update beznyucet set jmeno ='" + name +
+            statement.execute("update ucet set jmeno ='" + name +
                     "', prijmeni='" + lastName + "' where jmenoUctu='" + username + "'");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
-    public static AccountRegular getRegularUserByUsername(String username) {
-        AccountRegular acc;
+    public static Account getAccountByUsername(String username) {
         try (Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("select * from beznyucet where jmenoUctu='"
+            ResultSet resultSet = statement.executeQuery("select * from ucet where jmenoUctu='"
                     + username + "'");
             if (resultSet.next()) {
-                acc = new AccountRegular(
-                        resultSet.getInt("id"),
-                        resultSet.getString("jmenoUctu"),
-                        resultSet.getString("heslo"),
-                        resultSet.getString("jmeno"),
-                        resultSet.getString("prijmeni"));
-                return acc;
+                return getAccountByAccountType(resultSet);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -133,5 +126,28 @@ public class SqlDataManager {
             throwables.printStackTrace();
         }
         return null;
+    }
+
+    private static Account getAccountByAccountType(ResultSet resultSet) throws SQLException {
+        return switch (resultSet.getInt("typUctu")) {
+            default -> new AccountRegular(
+                    resultSet.getString("jmenoUctu"),
+                    resultSet.getString("heslo"),
+                    resultSet.getString("jmeno"),
+                    resultSet.getString("prijmeni"),
+                    AccountType.getType(resultSet.getInt("typUctu")));
+            case 1 -> new AccountSupport(
+                    resultSet.getString("jmenoUctu"),
+                    resultSet.getString("heslo"),
+                    resultSet.getString("jmeno"),
+                    resultSet.getString("prijmeni"),
+                    AccountType.getType(resultSet.getInt("typUctu")));
+            case 2 -> new AccountAdmin(
+                    resultSet.getString("jmenoUctu"),
+                    resultSet.getString("heslo"),
+                    resultSet.getString("jmeno"),
+                    resultSet.getString("prijmeni"),
+                    AccountType.getType(resultSet.getInt("typUctu")));
+        };
     }
 }

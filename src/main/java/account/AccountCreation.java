@@ -1,9 +1,11 @@
 package account;
 
+import enums.AccountType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import model.Account;
 import model.AccountRegular;
 import model.Session;
 import model.SqlDataManager;
@@ -14,9 +16,11 @@ import java.util.ArrayList;
 public class AccountCreation {
     @FXML
     public Button btnRegister;
+
     //todo testing session, remove later
     @FXML
     public Button btnTest;
+
     @FXML
     private TextField txtUsername;
     @FXML
@@ -28,7 +32,7 @@ public class AccountCreation {
     @FXML
     private TextField txtLastName;
 
-    private ArrayList<AccountRegular> regularAccounts;
+    private ArrayList<Account> accounts;
 
     @FXML
     public void initialize() {
@@ -36,7 +40,7 @@ public class AccountCreation {
     }
 
     public void onAccRegister(ActionEvent actionEvent) {
-        regularAccounts = SqlDataManager.getAllRegularAccounts();
+        accounts = SqlDataManager.getAllAccounts();
         if (!isUsernameUnique()) {
             Util.alertError("Registration error", "Username is taken.");
         } else if (!verifyPassword()) {
@@ -44,8 +48,9 @@ public class AccountCreation {
                     "must be the same!");
         } else {
             AccountRegular accRegular = new AccountRegular(txtUsername.getText(), txtPassword.getText(),
-                    txtName.getText(), txtLastName.getText());
+                    txtName.getText(), txtLastName.getText(), AccountType.REGULAR);
             SqlDataManager.addRegularUser(accRegular);
+            Util.alertConfirmation("Success", "Account Created!");
         }
     }
 
@@ -54,7 +59,7 @@ public class AccountCreation {
     }
 
     private boolean isUsernameUnique() {
-        for (AccountRegular acc : regularAccounts) {
+        for (Account acc : accounts) {
             if (txtUsername.getText().equals(acc.getUsername())) return false;
         }
         return true;

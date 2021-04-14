@@ -7,12 +7,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import model.Coin;
 import model.SqlDataManager;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-//to fix misplaced labels either do some calculations with width
-//or better create some layout for the labels (vbox??)
+
 public class CoinPage {
     @FXML
     public Label lblName;
@@ -30,10 +30,12 @@ public class CoinPage {
     public Button btnDisplayCoin;
     @FXML
     public ChoiceBox<Integer> cmbTestCoinChoice;
+    @FXML
+    public Pane imageviewPane;
 
     @FXML
     public void initialize() {
-        cmbTestCoinChoice.setValue(0);
+        cmbTestCoinChoice.setValue(1);
     }
 
     public void onDisplayCoin(ActionEvent actionEvent) throws FileNotFoundException {
@@ -45,7 +47,10 @@ public class CoinPage {
         lblCountry.setText(coin.getCountry());
         lblMetal.setText(coin.getMetal());
         FileInputStream inputstream = new FileInputStream(Coin.COIN_FOLDER_PATH + coin.getImagePath());
-        Image img = new Image(inputstream);
+        //todo note: this method of resizing the image might not be the best, maybe redo it later.
+        Image img = new Image(inputstream, imageviewPane.getWidth(), imageviewPane.getHeight(), false, false);
+//        imgCoin.setFitHeight(imageviewPane.getHeight());
+//        imgCoin.setFitWidth(imageviewPane.getWidth());
         imgCoin.setImage(img);
     }
 }

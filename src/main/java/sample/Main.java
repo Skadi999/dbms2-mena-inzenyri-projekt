@@ -9,7 +9,7 @@ import model.SqlDataManager;
 
 import java.util.Objects;
 
-//todo finish frontend
+//todo styling
 //todo browse coins, my transactions (history of sales), my listings, list item, buy item
 //todo other account types
 public class Main extends Application {
@@ -19,6 +19,8 @@ public class Main extends Application {
         SqlDataManager.init();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("accountCreation.fxml")));
         primaryStage.setTitle("MENA Inzenyri DBMS Aplikace");
+//        Scene scene = new Scene(root, 800, 600);
+//        scene.getStylesheets().add("C:\\Users\\Skadi\\IdeaProjects\\dbms2project\\src\\main\\resources\\css\\styles.css");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }

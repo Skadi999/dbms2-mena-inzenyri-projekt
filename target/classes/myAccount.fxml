@@ -2,33 +2,67 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.PasswordField?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="account.MyAccount">
-   <fx:include source="toolbar.fxml"/>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="pane" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="account.MyAccount">
+   <fx:include source="toolbar.fxml" />
    <Label layoutX="348.0" layoutY="69.0" text="My Account">
       <font>
          <Font name="Arial Bold" size="18.0" />
       </font>
    </Label>
-   <Label layoutX="90.0" layoutY="126.0" text="Name" />
-   <TextField fx:id="txtName" layoutX="32.0" layoutY="143.0" />
-   <Label layoutX="78.0" layoutY="191.0" text="Last Name" />
-   <TextField fx:id="txtLastName" layoutX="32.0" layoutY="208.0" />
-   <Label layoutX="558.0" layoutY="122.0" text="Change Password">
+   <Label layoutX="475.0" layoutY="135.0" text="Change Password">
       <font>
-         <Font size="16.0" />
+         <Font name="System Bold" size="17.0" />
       </font>
    </Label>
-   <Label layoutX="582.0" layoutY="248.0" text="New Password" />
-   <Label layoutX="560.0" layoutY="306.0" text="Confirm New Password" />
-   <Label layoutX="585.0" layoutY="183.0" text="Old Password" />
-   <PasswordField fx:id="txtOldPw" layoutX="547.0" layoutY="205.0" />
-   <PasswordField fx:id="txtNewPw" layoutX="547.0" layoutY="265.0" />
-   <PasswordField fx:id="txtConfirmNewPw" layoutX="546.0" layoutY="323.0" />
-   <Button fx:id="btnChangePw" layoutX="586.0" layoutY="362.0" mnemonicParsing="false" onAction="#changePassword" text="Change Password" />
-   <Button fx:id="btnUpdateProfile" layoutX="90.0" layoutY="362.0" mnemonicParsing="false" onAction="#updateProfile" text="Update Profile" />
+   <Button fx:id="btnChangePw" layoutX="530.0" layoutY="397.0" mnemonicParsing="false" onAction="#changePassword" text="Change Password" />
+   <Button fx:id="btnUpdateProfile" layoutX="209.0" layoutY="397.0" mnemonicParsing="false" onAction="#updateProfile" text="Update Profile" />
+   <VBox alignment="TOP_CENTER" layoutX="116.0" layoutY="169.0" prefHeight="220.0" prefWidth="190.0" styleClass="genericWindow">
+      <children>
+         <Label text="Name">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+         <TextField fx:id="txtName" maxWidth="-Infinity" styleClass="textField" />
+         <Label text="Last Name">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+         <TextField fx:id="txtLastName" maxWidth="-Infinity" styleClass="textField" />
+      </children>
+   </VBox>
+   <Label layoutX="184.0" layoutY="135.0" text="Profile">
+      <font>
+         <Font name="System Bold" size="16.0" />
+      </font>
+   </Label>
+   <VBox alignment="TOP_CENTER" layoutX="450.0" layoutY="169.0" prefHeight="220.0" prefWidth="190.0" styleClass="genericWindow">
+      <children>
+         <Label text="Old Password">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+         <PasswordField fx:id="txtOldPw" maxWidth="-Infinity" styleClass="textField" />
+         <Label text="New Password">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+         <PasswordField fx:id="txtNewPw" maxWidth="-Infinity" styleClass="textField" />
+         <Label text="Confirm New Password">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+         <PasswordField fx:id="txtConfirmNewPw" maxWidth="-Infinity" styleClass="textField" />
+      </children>
+   </VBox>
 </Pane>

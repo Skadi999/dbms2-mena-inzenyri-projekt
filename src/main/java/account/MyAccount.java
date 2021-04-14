@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import model.AccountRegular;
+import model.Account;
 import model.Session;
 import model.SqlDataManager;
 import util.Util;
@@ -25,10 +25,10 @@ public class MyAccount {
     @FXML
     public Button btnUpdateProfile;
 
-    private final AccountRegular acc;
+    private final Account acc;
 
     public MyAccount() {
-        acc = SqlDataManager.getRegularUserByUsername(Session.username);
+        acc = SqlDataManager.getAccountByUsername(Session.username);
     }
 
     //https://stackoverflow.com/questions/34785417/javafx-fxml-controller-constructor-vs-initialize-method
@@ -56,5 +56,6 @@ public class MyAccount {
 
     public void updateProfile(ActionEvent actionEvent) {
         SqlDataManager.updateProfile(Session.username, txtName.getText(), txtLastName.getText());
+        Util.alertConfirmation("Success!", "Profile has been updated.");
     }
 }

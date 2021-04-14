@@ -10,19 +10,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.CoinPage">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="pane" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.CoinPage">
     <fx:include source="toolbar.fxml" />
     <Button fx:id="btnDisplayCoin" layoutX="476.0" layoutY="359.0" mnemonicParsing="false" onAction="#onDisplayCoin" text="Test Display Coin Button" />
-    <ChoiceBox fx:id="cmbTestCoinChoice" layoutX="474.0" layoutY="323.0" prefWidth="150.0">
+    <ChoiceBox fx:id="cmbTestCoinChoice" layoutX="474.0" layoutY="323.0" prefWidth="150.0" styleClass="choiceBox">
         <items>
             <FXCollections fx:factory="observableArrayList">
-                <Integer fx:value="0" />
                 <Integer fx:value="1" />
                 <Integer fx:value="2" />
+                <Integer fx:value="3" />
             </FXCollections>
         </items>
     </ChoiceBox>
-    <VBox alignment="TOP_CENTER" layoutX="474.0" layoutY="100.0" prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #e8e2d9; -fx-border-color: #bc9d29; -fx-border-width: 4px;">
+    <VBox alignment="TOP_CENTER" layoutX="474.0" layoutY="100.0" prefHeight="200.0" prefWidth="250.0" styleClass="genericWindow">
         <Label fx:id="lblName" styleClass="vboxLabel" text="Name">
             <font>
                 <Font name="System Bold" size="14.0" />
@@ -49,8 +49,7 @@
             </font>
         </Label>
     </VBox>
-    <Pane layoutX="61.0" layoutY="100.0" prefHeight="400.0" prefWidth="400.0"
-          style="-fx-border-color: #bc9d29; -fx-border-width: 5px;">
-        <ImageView fx:id="imgCoin" fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true"/>
+    <Pane fx:id="imageviewPane" layoutX="61.0" layoutY="100.0" prefHeight="400.0" prefWidth="400.0" style="-fx-border-color: #bc9d29; -fx-background-color: #e8e2d9; -fx-border-width: 5px;">
+        <ImageView fx:id="imgCoin" fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
     </Pane>
 </Pane>
