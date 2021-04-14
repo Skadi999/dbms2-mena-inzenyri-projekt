@@ -10,5 +10,6 @@
       <Button fx:id="btnPageLogin" alignment="CENTER" mnemonicParsing="false" onAction="#onClickLoginPage" text="Login" />
       <Button fx:id="btnPageRegister" mnemonicParsing="false" onAction="#onClickPageRegister" text="Register" />
       <Button fx:id="btnMyAccount" mnemonicParsing="false" onAction="#onClickMyAccount" text="My Account" />
+      <Button fx:id="btnCoinDisplay" mnemonicParsing="false" onAction="#onClickPageCoin" text="Coin Display" />
    </buttons>
 </ButtonBar>

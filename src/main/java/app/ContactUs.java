@@ -13,7 +13,7 @@ import util.Util;
 
 public class ContactUs {
     @FXML
-    public ChoiceBox<String> chobxMsgType;
+    public ChoiceBox<String> cmbMessageType;
     @FXML
     public Button btnSubmit;
     @FXML
@@ -33,7 +33,7 @@ public class ContactUs {
             Util.alertError("Cannot send message", "Your message length exceeds 500 characters!");
             return;
         }
-        MessageType msgType = getMessageType(chobxMsgType.getValue());
+        MessageType msgType = getMessageType(cmbMessageType.getValue());
         Message message = new Message(msgType.getNum(), txtMessage.getText(), Session.username);
         SqlDataManager.addMessage(message);
         Util.alertConfirmation("Success!", "Message Sent!");

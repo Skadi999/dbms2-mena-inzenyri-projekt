@@ -22,6 +22,8 @@ public class Toolbar {
     public Button btnLogout;
     @FXML
     public Button btnContact;
+    @FXML
+    public Button btnCoinDisplay;
 
     public void onClickMyAccount(ActionEvent actionEvent) {
         if (Session.username == null) {
@@ -70,6 +72,15 @@ public class Toolbar {
         Util.alertConfirmation("Success!", "You have logged out.");
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("login.fxml")));
+            this.btnPageLogin.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onClickPageCoin(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("coin.fxml")));
             this.btnPageLogin.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();

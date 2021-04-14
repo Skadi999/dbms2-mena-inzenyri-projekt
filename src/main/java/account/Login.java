@@ -16,10 +16,6 @@ public class Login {
     @FXML
     public Button btnLogin;
 
-    public Login() {
-        SqlDataManager.init();
-    }
-
     @FXML
     public void initialize() {
         btnLogin.setDefaultButton(true);

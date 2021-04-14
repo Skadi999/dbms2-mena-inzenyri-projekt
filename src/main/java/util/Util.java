@@ -2,6 +2,7 @@ package util;
 
 import javafx.scene.control.Alert;
 public class Util {
+
     //alert without a headerText
     public static void alertError(String title, String contentText) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

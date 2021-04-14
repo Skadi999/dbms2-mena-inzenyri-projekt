@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class AccountCreation {
     @FXML
     public Button btnRegister;
-    //testing
+    //todo testing session, remove later
     @FXML
     public Button btnTest;
     @FXML

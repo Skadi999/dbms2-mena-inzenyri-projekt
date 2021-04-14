@@ -18,7 +18,7 @@
     </Label>
     <TextArea fx:id="txtMessage" layoutX="64.0" layoutY="197.0" prefHeight="331.0" prefWidth="673.0" />
     <Label layoutX="64.0" layoutY="180.0" text="Your Message" />
-    <ChoiceBox fx:id="chobxMsgType" value="Technical Issue" layoutX="587.0" layoutY="167.0" prefWidth="150.0">
+    <ChoiceBox fx:id="cmbMessageType" value="Technical Issue" layoutX="587.0" layoutY="167.0" prefWidth="150.0">
         <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="Technical Issue" />

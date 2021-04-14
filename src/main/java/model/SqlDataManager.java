@@ -24,13 +24,6 @@ public class SqlDataManager {
         }
     }
 
-    public SqlDataManager getInstance() {
-        if (sqlDataManager == null) {
-            sqlDataManager = new SqlDataManager();
-        }
-        return sqlDataManager;
-    }
-
     public static void addRegularUser(AccountRegular user) {
         try (Statement statement = connection.createStatement()) {
             statement.execute("insert into beznyucet(jmeno, prijmeni, jmenoUctu, heslo) values('" +
@@ -115,6 +108,26 @@ public class SqlDataManager {
                         resultSet.getString("jmeno"),
                         resultSet.getString("prijmeni"));
                 return acc;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Coin getCoinById(int id) {
+        Coin coin;
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("select * from mince where id='" + id + "'");
+            if (resultSet.next()) {
+                coin = new Coin(resultSet.getInt("id"),
+                        resultSet.getString("nazev"),
+                        resultSet.getDouble("cena"),
+                        resultSet.getInt("rok"),
+                        resultSet.getString("zeme"),
+                        resultSet.getString("kov"),
+                        resultSet.getString("obrazekCesta"));
+                return coin;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

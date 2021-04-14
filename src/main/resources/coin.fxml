@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.Integer?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.CoinPage">
+    <fx:include source="toolbar.fxml" />
+    <Button fx:id="btnDisplayCoin" layoutX="476.0" layoutY="359.0" mnemonicParsing="false" onAction="#onDisplayCoin" text="Test Display Coin Button" />
+    <ChoiceBox fx:id="cmbTestCoinChoice" layoutX="474.0" layoutY="323.0" prefWidth="150.0">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <Integer fx:value="0" />
+                <Integer fx:value="1" />
+                <Integer fx:value="2" />
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <VBox alignment="TOP_CENTER" layoutX="474.0" layoutY="100.0" prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #e8e2d9; -fx-border-color: #bc9d29; -fx-border-width: 4px;">
+        <Label fx:id="lblName" styleClass="vboxLabel" text="Name">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="lblYear" styleClass="vboxLabel" text="Year of Mint">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="lblMetal" styleClass="vboxLabel" text="Type of Metal">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="lblCountry" styleClass="vboxLabel" text="Country">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="lblPrice" styleClass="vboxLabel" text="Price" textFill="#1cc719">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+    </VBox>
+    <Pane layoutX="61.0" layoutY="100.0" prefHeight="400.0" prefWidth="400.0"
+          style="-fx-border-color: #bc9d29; -fx-border-width: 5px;">
+        <ImageView fx:id="imgCoin" fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true"/>
+    </Pane>
+</Pane>
