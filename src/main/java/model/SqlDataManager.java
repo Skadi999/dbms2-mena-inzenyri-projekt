@@ -5,7 +5,6 @@ import enums.AccountType;
 import java.sql.*;
 import java.util.ArrayList;
 
-//singleton
 public class SqlDataManager {
     private static SqlDataManager sqlDataManager;
     private static Connection connection;

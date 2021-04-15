@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import model.Session;
-import sample.Main;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -69,7 +68,7 @@ public class Toolbar {
 
     public void onLogout(ActionEvent actionEvent) {
         Session.clear();
-        Util.alertConfirmation("Success!", "You have logged out.");
+        Util.alertConfirmation("Success!", "You have been logged out.");
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("login.fxml")));
             this.btnPageLogin.getScene().setRoot(root);

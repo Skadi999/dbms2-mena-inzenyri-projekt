@@ -42,7 +42,7 @@ public class CoinPage {
         Coin coin = SqlDataManager.getCoinById(cmbTestCoinChoice.getValue());
         if (coin == null) return;
         lblName.setText(coin.getName());
-        lblPrice.setText(String.valueOf(coin.getPrice()));
+        lblPrice.setText("$" + coin.getPrice());
         lblYear.setText(String.valueOf(coin.getYear()));
         lblCountry.setText(coin.getCountry());
         lblMetal.setText(coin.getMetal());
