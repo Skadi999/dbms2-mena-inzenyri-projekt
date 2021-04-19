@@ -144,9 +144,29 @@ public class SqlDataManager {
 
     public static List<Coin> getAllCoins() {
         List<Coin> coins = new ArrayList<>();
-
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("select * from mince");
+            while (resultSet.next()) {
+                Coin coin = new Coin(resultSet.getInt("id"),
+                        resultSet.getString("nazev"),
+                        resultSet.getDouble("cena"),
+                        resultSet.getInt("rok"),
+                        resultSet.getString("zeme"),
+                        resultSet.getString("kov"),
+                        resultSet.getString("obrazekCesta"),
+                        resultSet.getInt("prodavajiciID"));
+                coins.add(coin);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return coins;
+    }
+
+    public static List<Coin> getAllCoinsById(int id) {
+        List<Coin> coins = new ArrayList<>();
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("select * from mince where prodavajiciID='" + id + "'");
             while (resultSet.next()) {
                 Coin coin = new Coin(resultSet.getInt("id"),
                         resultSet.getString("nazev"),

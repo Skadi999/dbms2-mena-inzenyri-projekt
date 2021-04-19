@@ -31,19 +31,19 @@ public class Toolbar {
             Util.alertError("Cannot access My Account", "You must be logged in.");
             return;
         }
-        switchToPage("myAccount");
+        Util.switchToPage("myAccount");
     }
 
     public void onClickPageRegister(ActionEvent actionEvent) {
-        switchToPage("accountCreation");
+        Util.switchToPage("accountCreation");
     }
 
     public void onClickLoginPage(ActionEvent actionEvent) {
-        switchToPage("login");
+        Util.switchToPage("login");
     }
 
     public void onClickContactPage(ActionEvent actionEvent) {
-        switchToPage("contactUs");
+        Util.switchToPage("contactUs");
     }
 
     public void onLogout(ActionEvent actionEvent) {
@@ -53,11 +53,11 @@ public class Toolbar {
         }
         Session.clear();
         Util.alertConfirmation("Success!", "You have been logged out.");
-        switchToPage("login");
+        Util.switchToPage("login");
     }
 
     public void onClickBrowseCoins(ActionEvent actionEvent) {
-        switchToPage("browseCoins");
+        Util.switchToPage("browseCoins");
     }
 
     public void onClickPageListCoin(ActionEvent actionEvent) {
@@ -65,17 +65,8 @@ public class Toolbar {
             Util.alertError("Error", "You must be logged in.");
             return;
         }
-        switchToPage("listCoin");
+        Util.switchToPage("listCoin");
     }
 
-    //Specify the page name WITHOUT .fxml
-    public void switchToPage(String pageName) {
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader()
-                    .getResource(pageName + ".fxml")));
-            this.btnPageLogin.getScene().setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 }

@@ -2,12 +2,17 @@ package account;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Account;
 import model.Session;
 import model.SqlDataManager;
 import util.Util;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class MyAccount {
     @FXML
@@ -24,6 +29,8 @@ public class MyAccount {
     public TextField txtLastName;
     @FXML
     public Button btnUpdateProfile;
+    @FXML
+    public Button btnMyListings;
 
     private final Account acc;
 
@@ -57,5 +64,9 @@ public class MyAccount {
     public void updateProfile(ActionEvent actionEvent) {
         SqlDataManager.updateProfile(Session.username, txtName.getText(), txtLastName.getText());
         Util.alertConfirmation("Success!", "Profile has been updated.");
+    }
+
+    public void onClickMyListings(ActionEvent actionEvent) {
+        Util.switchToPage("myListings");
     }
 }

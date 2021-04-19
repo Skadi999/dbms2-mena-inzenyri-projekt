@@ -2,17 +2,13 @@ package app;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import model.Coin;
 import model.SqlDataManager;
 import util.Util;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
 public class BrowseCoins {
     @FXML
@@ -35,24 +31,17 @@ public class BrowseCoins {
 
     @FXML
     public void viewCoinPage(ActionEvent actionEvent) {
-        //todo make coin page display this
         String item = listCoins.getSelectionModel().getSelectedItem();
-        //this method of getting the ID is temporary.
-        String[] split = item.split(" ");
-        String id = split[0].substring(1);
-        Coin selectedCoin = SqlDataManager.getCoinById(Integer.parseInt(id));
-
+        int id = getItemId(item);
+        Coin selectedCoin = SqlDataManager.getCoinById(id);
         Util.setActiveCoin(selectedCoin);
-        switchToCoinPage();
+        Util.switchToPage("coin");
     }
 
-    private void switchToCoinPage() {
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader()
-                    .getResource("coin.fxml")));
-            this.btnViewCoin.getScene().setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    //this method of getting the ID is temporary.
+    private int getItemId(String item) {
+        String[] split = item.split(" ");
+        String id = split[0].substring(1);
+        return Integer.parseInt(id);
     }
 }

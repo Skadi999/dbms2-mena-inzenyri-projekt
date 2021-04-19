@@ -2,8 +2,6 @@ package app;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -15,8 +13,6 @@ import util.Util;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Objects;
 
 public class CoinPage {
     @FXML
@@ -63,16 +59,6 @@ public class CoinPage {
                 " has been deducted from your account balance.");
         SqlDataManager.removeCoin(coin.getId());
         coin = null;
-        switchToBrowsePage();
-    }
-
-    private void switchToBrowsePage() {
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader()
-                    .getResource("browseCoins.fxml")));
-            this.btnBuyCoin.getScene().setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Util.switchToPage("browseCoins");
     }
 }
