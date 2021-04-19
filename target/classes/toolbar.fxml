@@ -8,8 +8,9 @@
       <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#onLogout" text="Logout" />
       <Button fx:id="btnPageLogin" alignment="CENTER" mnemonicParsing="false" onAction="#onClickLoginPage" text="Login" />
       <Button fx:id="btnPageRegister" mnemonicParsing="false" onAction="#onClickPageRegister" text="Register" />
-      <Button fx:id="btnCoinDisplay" mnemonicParsing="false" onAction="#onClickPageCoin" text="Coin Display" />
       <Button fx:id="btnContact" mnemonicParsing="false" onAction="#onClickContactPage" text="Contact" />
       <Button fx:id="btnMyAccount" mnemonicParsing="false" onAction="#onClickMyAccount" text="My Account" />
+      <Button fx:id="btnBrowseCoins" mnemonicParsing="false" onAction="#onClickBrowseCoins" text="Browse Coins" />
+      <Button fx:id="btnListCoin" mnemonicParsing="false" onAction="#onClickPageListCoin" text="List Coins" />
    </buttons>
 </ButtonBar>

@@ -8,26 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<!--<GridPane alignment="center" hgap="10" prefHeight="600.0" prefWidth="800.0" vgap="10" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="account.AccountCreation">-->
-<!--   <columnConstraints>-->
-<!--      <ColumnConstraints />-->
-<!--      <ColumnConstraints />-->
-<!--      <ColumnConstraints />-->
-<!--      <ColumnConstraints />-->
-<!--      <ColumnConstraints />-->
-<!--   </columnConstraints>-->
-<!--   <rowConstraints>-->
-<!--      <RowConstraints />-->
-<!--      <RowConstraints />-->
-<!--      <RowConstraints />-->
-<!--      <RowConstraints />-->
-<!--      <RowConstraints />-->
-<!--      <RowConstraints />-->
-<!--   </rowConstraints>-->
-<!--   <children>-->
-<!--   </children>-->
-<!--</GridPane>-->
-
 <Pane prefHeight="600.0" prefWidth="800.0" styleClass="pane" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="account.AccountCreation">
    <fx:include source="toolbar.fxml" />
    <Label layoutX="312.0" layoutY="82.0" text="Account Creation">
@@ -36,39 +16,39 @@
       </font>
    </Label>
    <Button fx:id="btnRegister" layoutX="448.0" layoutY="474.0" mnemonicParsing="false" onAction="#onAccRegister" text="Create Account" />
-   <Button fx:id="btnTest" layoutX="254.0" layoutY="474.0" mnemonicParsing="false" onAction="#testSession" text="TestBtn" />
-   <VBox alignment="TOP_CENTER" layoutX="254.0" layoutY="118.0" prefHeight="349.0" prefWidth="292.0" styleClass="genericWindow">
-      <children>
-         <Label styleClass="vboxLabel" text="Username">
-            <font>
-               <Font name="System Bold" size="14.0" />
-            </font>
-         </Label>
-         <TextField fx:id="txtUsername" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="textField" />
-         <Label styleClass="vboxLabel" text="Password">
-            <font>
-               <Font name="System Bold" size="14.0" />
-            </font>
-         </Label>
-         <PasswordField fx:id="txtPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="textField" />
-         <Label styleClass="vboxLabel" text="Confirm Password">
-            <font>
-               <Font name="System Bold" size="14.0" />
-            </font>
-         </Label>
-         <PasswordField fx:id="txtConfirmPassword" maxHeight="-Infinity" maxWidth="-Infinity" styleClass="textField" />
-         <Label styleClass="vboxLabel" text="Name">
-            <font>
-               <Font name="System Bold" size="14.0" />
-            </font>
-         </Label>
-         <TextField fx:id="txtName" maxHeight="-Infinity" maxWidth="-Infinity" styleClass="textField" />
-         <Label styleClass="vboxLabel" text="Last Name">
-            <font>
-               <Font name="System Bold" size="14.0" />
-            </font>
-         </Label>
-         <TextField fx:id="txtLastName" maxHeight="-Infinity" maxWidth="-Infinity" styleClass="textField" />
-      </children>
+   <VBox alignment="TOP_CENTER" layoutX="254.0" layoutY="118.0" prefHeight="349.0" prefWidth="292.0"
+         styleClass="genericWindow">
+      <Label styleClass="vboxLabel" text="Username">
+         <font>
+            <Font name="System Bold" size="14.0"/>
+         </font>
+      </Label>
+      <TextField fx:id="txtUsername" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                 minWidth="-Infinity" styleClass="textField"/>
+      <Label styleClass="vboxLabel" text="Password">
+         <font>
+            <Font name="System Bold" size="14.0"/>
+         </font>
+      </Label>
+      <PasswordField fx:id="txtPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                     minWidth="-Infinity" styleClass="textField"/>
+      <Label styleClass="vboxLabel" text="Confirm Password">
+         <font>
+            <Font name="System Bold" size="14.0"/>
+         </font>
+      </Label>
+      <PasswordField fx:id="txtConfirmPassword" maxHeight="-Infinity" maxWidth="-Infinity" styleClass="textField"/>
+      <Label styleClass="vboxLabel" text="Name">
+         <font>
+            <Font name="System Bold" size="14.0"/>
+         </font>
+      </Label>
+      <TextField fx:id="txtName" maxHeight="-Infinity" maxWidth="-Infinity" styleClass="textField"/>
+      <Label styleClass="vboxLabel" text="Last Name">
+         <font>
+            <Font name="System Bold" size="14.0"/>
+         </font>
+      </Label>
+      <TextField fx:id="txtLastName" maxHeight="-Infinity" maxWidth="-Infinity" styleClass="textField"/>
    </VBox>
 </Pane>

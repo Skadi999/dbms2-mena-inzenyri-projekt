@@ -4,6 +4,7 @@ import enums.AccountType;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SqlDataManager {
     private static SqlDataManager sqlDataManager;
@@ -107,6 +108,19 @@ public class SqlDataManager {
         return null;
     }
 
+    public static int getAccountIdByUsername(String username) {
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("select * from beznyucet where jmenoUctu='"
+                    + username + "'");
+            if (resultSet.next()) {
+                return resultSet.getInt("id");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return -1;
+    }
+
     public static Coin getCoinById(int id) {
         Coin coin;
         try (Statement statement = connection.createStatement()) {
@@ -118,13 +132,55 @@ public class SqlDataManager {
                         resultSet.getInt("rok"),
                         resultSet.getString("zeme"),
                         resultSet.getString("kov"),
-                        resultSet.getString("obrazekCesta"));
+                        resultSet.getString("obrazekCesta"),
+                        resultSet.getInt("prodavajiciID"));
                 return coin;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return null;
+    }
+
+    public static List<Coin> getAllCoins() {
+        List<Coin> coins = new ArrayList<>();
+
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("select * from mince");
+            while (resultSet.next()) {
+                Coin coin = new Coin(resultSet.getInt("id"),
+                        resultSet.getString("nazev"),
+                        resultSet.getDouble("cena"),
+                        resultSet.getInt("rok"),
+                        resultSet.getString("zeme"),
+                        resultSet.getString("kov"),
+                        resultSet.getString("obrazekCesta"),
+                        resultSet.getInt("prodavajiciID"));
+                coins.add(coin);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return coins;
+    }
+
+    public static void addCoin(Coin coin) {
+        try (Statement statement = connection.createStatement()) {
+            statement.execute("insert into mince(cena, rok, nazev, kov, zeme, obrazekCesta, prodavajiciID) values('" +
+                    coin.getPrice() + "','" + coin.getYear() + "','" +
+                    coin.getName() + "','" + coin.getMetal() + "','" + coin.getCountry() + "','" +
+                    coin.getImagePath() + "','" + coin.getSellerId() + "')");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static void removeCoin(int id) {
+        try (Statement statement = connection.createStatement()) {
+            statement.execute("delete from mince where id='" + id + "'");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     private static Account getAccountByAccountType(ResultSet resultSet) throws SQLException {

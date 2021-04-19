@@ -2,23 +2,29 @@ package model;
 
 public class Coin {
     private int id;
-    private String name;
-    private double price;
-    private int year;
-    private String country;
-    private String metal;
-    private String imagePath;
+    private final String name;
+    private final double price;
+    private final int year;
+    private final String country;
+    private final String metal;
+    private final String imagePath;
+    private final int sellerId;
 
     public static final String COIN_FOLDER_PATH = "C:\\Users\\Skadi\\IdeaProjects\\dbms2project\\src\\main\\resources\\Coins\\";
 
-    public Coin(int id, String name, double price, int year, String country, String metal, String imagePath) {
+    public Coin(int id, String name, double price, int year, String country, String metal, String imagePath, int sellerId) {
+        this(name, price, year, country, metal, imagePath, sellerId);
         this.id = id;
+    }
+
+    public Coin(String name, double price, int year, String country, String metal, String imagePath, int sellerId) {
         this.name = name;
         this.price = price;
         this.year = year;
         this.country = country;
         this.metal = metal;
         this.imagePath = imagePath;
+        this.sellerId = sellerId;
     }
 
     public int getId() {
@@ -47,5 +53,14 @@ public class Coin {
 
     public String getImagePath() {
         return imagePath;
+    }
+
+    public int getSellerId() {
+        return sellerId;
+    }
+
+    @Override
+    public String toString() {
+        return "#" + id + "    " + name + "    " + year + "    $" + price;
     }
 }

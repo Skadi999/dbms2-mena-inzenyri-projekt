@@ -22,64 +22,57 @@ public class Toolbar {
     @FXML
     public Button btnContact;
     @FXML
-    public Button btnCoinDisplay;
+    public Button btnBrowseCoins;
+    @FXML
+    public Button btnListCoin;
 
     public void onClickMyAccount(ActionEvent actionEvent) {
         if (Session.username == null) {
             Util.alertError("Cannot access My Account", "You must be logged in.");
             return;
         }
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader()
-                    .getResource("myAccount.fxml")));
-            this.btnPageRegister.getScene().setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        switchToPage("myAccount");
     }
 
     public void onClickPageRegister(ActionEvent actionEvent) {
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader()
-                    .getResource("accountCreation.fxml")));
-            this.btnPageRegister.getScene().setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        switchToPage("accountCreation");
     }
 
     public void onClickLoginPage(ActionEvent actionEvent) {
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("login.fxml")));
-            this.btnPageLogin.getScene().setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        switchToPage("login");
     }
 
     public void onClickContactPage(ActionEvent actionEvent) {
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("contactUs.fxml")));
-            this.btnPageLogin.getScene().setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        switchToPage("contactUs");
     }
 
     public void onLogout(ActionEvent actionEvent) {
+        if (Session.username == null) {
+            Util.alertError("Error", "You are not logged in!");
+            return;
+        }
         Session.clear();
         Util.alertConfirmation("Success!", "You have been logged out.");
-        try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("login.fxml")));
-            this.btnPageLogin.getScene().setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        switchToPage("login");
     }
 
-    public void onClickPageCoin(ActionEvent actionEvent) {
+    public void onClickBrowseCoins(ActionEvent actionEvent) {
+        switchToPage("browseCoins");
+    }
+
+    public void onClickPageListCoin(ActionEvent actionEvent) {
+        if (Session.username == null) {
+            Util.alertError("Error", "You must be logged in.");
+            return;
+        }
+        switchToPage("listCoin");
+    }
+
+    //Specify the page name WITHOUT .fxml
+    public void switchToPage(String pageName) {
         try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("coin.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader()
+                    .getResource(pageName + ".fxml")));
             this.btnPageLogin.getScene().setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();

@@ -37,3 +37,15 @@
 .choiceBox {
 	-fx-background-color: #ddad79;
 }
+
+.list-cell:even {
+	-fx-background-color: #f3ebd3;
+}
+
+.list-cell:odd {
+	-fx-background-color: #e1d6b2;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #c8af56;
+}

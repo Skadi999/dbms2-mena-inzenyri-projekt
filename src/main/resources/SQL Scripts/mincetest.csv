@@ -1,0 +1,5 @@
+id,cena,rok,nazev,kov,zeme,nazevKolekce,obrazekCesta,prodavajiciID
+1,101,1921,"Silver Dollar Morgan",Silver,USA,NULL,"Silver Dollar 1921 Morgan.jpg",1
+2,50.3,1936,"Silver 2 Reichsmark",Silver,Germany,NULL,"1936-1939 Silver 2 Reichsmark.jpg",1
+3,200,2020,"American Silver Eagle",".999 Silver",USA,NULL,"2020 - American Silver Eagle .999 Fine Silver.jpg",1
+4,111,1311,"test coin",Gold,TestLand,NULL,"1936-1939 Silver 2 Reichsmark.jpg",1

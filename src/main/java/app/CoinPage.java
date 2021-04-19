@@ -2,16 +2,21 @@ package app;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.Coin;
 import model.SqlDataManager;
+import util.Util;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Objects;
 
 public class CoinPage {
     @FXML
@@ -27,30 +32,47 @@ public class CoinPage {
     @FXML
     public ImageView imgCoin;
     @FXML
-    public Button btnDisplayCoin;
-    @FXML
-    public ChoiceBox<Integer> cmbTestCoinChoice;
-    @FXML
     public Pane imageviewPane;
+    @FXML
+    public Button btnBuyCoin;
+
+    private Coin coin;
 
     @FXML
-    public void initialize() {
-        cmbTestCoinChoice.setValue(1);
+    public void initialize() throws FileNotFoundException {
+        coin = Util.getActiveCoin();
+        displayCoin();
     }
 
-    public void onDisplayCoin(ActionEvent actionEvent) throws FileNotFoundException {
-        Coin coin = SqlDataManager.getCoinById(cmbTestCoinChoice.getValue());
+    public void displayCoin() throws FileNotFoundException {
         if (coin == null) return;
         lblName.setText(coin.getName());
         lblPrice.setText("$" + coin.getPrice());
         lblYear.setText(String.valueOf(coin.getYear()));
         lblCountry.setText(coin.getCountry());
         lblMetal.setText(coin.getMetal());
+
         FileInputStream inputstream = new FileInputStream(Coin.COIN_FOLDER_PATH + coin.getImagePath());
-        //todo note: this method of resizing the image might not be the best, maybe redo it later.
-        Image img = new Image(inputstream, imageviewPane.getWidth(), imageviewPane.getHeight(), false, false);
-//        imgCoin.setFitHeight(imageviewPane.getHeight());
-//        imgCoin.setFitWidth(imageviewPane.getWidth());
+        Image img = new Image(inputstream, imageviewPane.getPrefWidth(), imageviewPane.getPrefHeight(), false, false);
         imgCoin.setImage(img);
+    }
+
+    public void onBuyCoin(ActionEvent actionEvent) {
+        //todo condition of having enough balance here and deduction of balance
+        Util.alertConfirmation("Success!", "Coin bought! $" + coin.getPrice() +
+                " has been deducted from your account balance.");
+        SqlDataManager.removeCoin(coin.getId());
+        coin = null;
+        switchToBrowsePage();
+    }
+
+    private void switchToBrowsePage() {
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader()
+                    .getResource("browseCoins.fxml")));
+            this.btnBuyCoin.getScene().setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

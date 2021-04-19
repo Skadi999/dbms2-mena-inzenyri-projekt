@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Account;
 import model.AccountRegular;
-import model.Session;
 import model.SqlDataManager;
 import util.Util;
 
@@ -16,11 +15,6 @@ import java.util.ArrayList;
 public class AccountCreation {
     @FXML
     public Button btnRegister;
-
-    //todo testing session, remove later
-    @FXML
-    public Button btnTest;
-
     @FXML
     private TextField txtUsername;
     @FXML
@@ -41,7 +35,9 @@ public class AccountCreation {
 
     public void onAccRegister(ActionEvent actionEvent) {
         accounts = SqlDataManager.getAllAccounts();
-        if (!isUsernameUnique()) {
+        if (isFieldEmpty()) {
+            Util.alertError("Error", "All fields must be filled.");
+        } else if (!isUsernameUnique()) {
             Util.alertError("Registration error", "Username is taken.");
         } else if (!verifyPassword()) {
             Util.alertError("Passwords do not match", "The values in New Password and Confirm Password" +
@@ -65,12 +61,9 @@ public class AccountCreation {
         return true;
     }
 
-    //todo remove after testing
-    public void testSession(ActionEvent actionEvent) {
-        if (Session.username != null) {
-            Util.alertConfirmation("session", Session.username);
-        } else {
-            Util.alertError("session", "Session is null!");
-        }
+    private boolean isFieldEmpty() {
+        return txtUsername.getText().isBlank() || txtPassword.getText().isBlank()
+                || txtConfirmPassword.getText().isBlank() || txtName.getText().isBlank() ||
+                txtLastName.getText().isBlank();
     }
 }

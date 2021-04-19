@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+      prefWidth="800.0" styleClass="pane" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/16"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.TicketReply">
+    <fx:include source="toolbar.fxml"/>
+    <TextArea fx:id="txtReply" layoutX="64.0" layoutY="197.0" prefHeight="331.0" prefWidth="673.0"/>
+    <Label layoutX="335.0" layoutY="75.0" text="Ticket Reply">
+        <font>
+            <Font name="Arial Bold" size="22.0"/>
+        </font>
+    </Label>
+    <ChoiceBox fx:id="cmbTicketId" layoutX="587.0" layoutY="166.0" prefWidth="150.0" styleClass="choiceBox">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Technical Issue"/>
+                <String fx:value="Complaint"/>
+                <String fx:value="Other"/>
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <Label layoutX="587.0" layoutY="149.0" text="Ticket ID"/>
+    <Button fx:id="btnTicketReply" onAction="#onTicketReply" layoutX="691.0" layoutY="528.0" mnemonicParsing="false"
+            text="Reply"/>
+</Pane>

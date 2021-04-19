@@ -1,7 +1,11 @@
 package util;
 
 import javafx.scene.control.Alert;
+import model.Coin;
+
 public class Util {
+    //this method of saving the selected coin is not good
+    private static Coin activeCoin;
 
     //alert without a headerText
     public static void alertError(String title, String contentText) {
@@ -17,9 +21,12 @@ public class Util {
         alert.setContentText(contentText);
         alert.show();
     }
-    //for use in sql statements, removes the necessity to manually put single quotes
-    //todo make use of it later
-    public static String withQuotes(String text) {
-        return "'" + text + "'";
+
+    public static Coin getActiveCoin() {
+        return activeCoin;
+    }
+
+    public static void setActiveCoin(Coin activeCoin) {
+        Util.activeCoin = activeCoin;
     }
 }

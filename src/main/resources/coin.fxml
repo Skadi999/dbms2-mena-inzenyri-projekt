@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.Integer?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -12,16 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="pane" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.CoinPage">
     <fx:include source="toolbar.fxml" />
-    <Button fx:id="btnDisplayCoin" layoutX="476.0" layoutY="359.0" mnemonicParsing="false" onAction="#onDisplayCoin" text="Test Display Coin Button" />
-    <ChoiceBox fx:id="cmbTestCoinChoice" layoutX="474.0" layoutY="323.0" prefWidth="150.0" styleClass="choiceBox">
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-                <Integer fx:value="1" />
-                <Integer fx:value="2" />
-                <Integer fx:value="3" />
-            </FXCollections>
-        </items>
-    </ChoiceBox>
+    <Button fx:id="btnBuyCoin" layoutX="474.0" layoutY="307.0" mnemonicParsing="false" onAction="#onBuyCoin" text="Buy Coin" />
     <VBox alignment="TOP_CENTER" layoutX="474.0" layoutY="100.0" prefHeight="200.0" prefWidth="250.0" styleClass="genericWindow">
         <Label fx:id="lblName" styleClass="vboxLabel" text="Name">
             <font>
