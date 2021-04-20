@@ -21,50 +21,53 @@
       </font>
    </Label>
    <Button fx:id="btnChangePw" layoutX="530.0" layoutY="397.0" mnemonicParsing="false" onAction="#changePassword" text="Change Password" />
-   <Button fx:id="btnUpdateProfile" layoutX="209.0" layoutY="397.0" mnemonicParsing="false" onAction="#updateProfile" text="Update Profile" />
-   <VBox alignment="TOP_CENTER" layoutX="116.0" layoutY="169.0" prefHeight="220.0" prefWidth="190.0"
-         styleClass="genericWindow">
+   <Button fx:id="btnUpdateProfile" layoutX="215.0" layoutY="397.0" mnemonicParsing="false" onAction="#updateProfile" text="Update Profile" />
+   <VBox alignment="TOP_CENTER" layoutX="116.0" layoutY="169.0" prefHeight="220.0" prefWidth="190.0" styleClass="genericWindow">
       <Label text="Name">
          <font>
-            <Font name="System Bold" size="12.0"/>
+            <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="txtName" maxWidth="-Infinity" styleClass="textField"/>
+      <TextField fx:id="txtName" maxWidth="-Infinity" styleClass="textField" />
       <Label text="Last Name">
          <font>
-            <Font name="System Bold" size="12.0"/>
+            <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="txtLastName" maxWidth="-Infinity" styleClass="textField"/>
+      <TextField fx:id="txtLastName" maxWidth="-Infinity" styleClass="textField" />
    </VBox>
    <Label layoutX="184.0" layoutY="135.0" text="Profile">
       <font>
          <Font name="System Bold" size="16.0" />
       </font>
    </Label>
-   <VBox alignment="TOP_CENTER" layoutX="450.0" layoutY="169.0" prefHeight="220.0" prefWidth="190.0" styleClass="genericWindow">
-      <children>
-         <Label text="Old Password">
-            <font>
-               <Font name="System Bold" size="12.0" />
-            </font>
-         </Label>
-         <PasswordField fx:id="txtOldPw" maxWidth="-Infinity" styleClass="textField" />
-         <Label text="New Password">
-            <font>
-               <Font name="System Bold" size="12.0" />
-            </font>
-         </Label>
-         <PasswordField fx:id="txtNewPw" maxWidth="-Infinity" styleClass="textField" />
-         <Label text="Confirm New Password">
-            <font>
-               <Font name="System Bold" size="12.0" />
-            </font>
-         </Label>
-         <PasswordField fx:id="txtConfirmNewPw" maxWidth="-Infinity" styleClass="textField" />
-      </children>
+   <VBox alignment="TOP_CENTER" layoutX="450.0" layoutY="169.0" prefHeight="220.0" prefWidth="190.0"
+         styleClass="genericWindow">
+      <Label text="Old Password">
+         <font>
+            <Font name="System Bold" size="12.0"/>
+         </font>
+      </Label>
+      <PasswordField fx:id="txtOldPw" maxWidth="-Infinity" styleClass="textField"/>
+      <Label text="New Password">
+         <font>
+            <Font name="System Bold" size="12.0"/>
+         </font>
+      </Label>
+      <PasswordField fx:id="txtNewPw" maxWidth="-Infinity" styleClass="textField"/>
+      <Label text="Confirm New Password">
+         <font>
+            <Font name="System Bold" size="12.0"/>
+         </font>
+      </Label>
+      <PasswordField fx:id="txtConfirmNewPw" maxWidth="-Infinity" styleClass="textField"/>
    </VBox>
    <Button fx:id="btnMyListings" layoutX="261.0" layoutY="469.0" mnemonicParsing="false" onAction="#onClickMyListings" text="My Listings">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Button>
+   <Button fx:id="btnMyTransactions" layoutX="400.0" layoutY="469.0" mnemonicParsing="false" onAction="#onClickMyTransactions" text="My Transactions">
       <font>
          <Font size="14.0" />
       </font>

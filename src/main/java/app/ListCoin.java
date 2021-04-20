@@ -48,9 +48,8 @@ public class ListCoin {
             String country = txtCountry.getText();
             String metal = txtMetal.getText();
             String imagePath = selectedFile.getName();
-            int accountId = SqlDataManager.getAccountIdByUsername(Session.username);
 
-            Coin coin = new Coin(name, price, year, country, metal, imagePath, accountId);
+            Coin coin = new Coin(name, price, year, country, metal, imagePath, Session.username);
             SqlDataManager.addCoin(coin);
             Util.alertConfirmation("Success!", "The coin has been listed.");
         }

@@ -5,9 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import model.Coin;
+import model.Session;
 import model.SqlDataManager;
 import util.Util;
-
 import java.util.List;
 
 public class BrowseCoins {
@@ -25,7 +25,9 @@ public class BrowseCoins {
     @FXML
     public void initialize() {
         for (Coin coin : coins) {
-            listCoins.getItems().add(coin.toString());
+            if (!coin.getSellerName().equals(Session.username)) {
+                listCoins.getItems().add(coin.toString());
+            }
         }
     }
 

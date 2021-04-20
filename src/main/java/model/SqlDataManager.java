@@ -133,7 +133,7 @@ public class SqlDataManager {
                         resultSet.getString("zeme"),
                         resultSet.getString("kov"),
                         resultSet.getString("obrazekCesta"),
-                        resultSet.getInt("prodavajiciID"));
+                        resultSet.getString("jmenoProdavajiciho"));
                 return coin;
             }
         } catch (SQLException throwables) {
@@ -154,7 +154,7 @@ public class SqlDataManager {
                         resultSet.getString("zeme"),
                         resultSet.getString("kov"),
                         resultSet.getString("obrazekCesta"),
-                        resultSet.getInt("prodavajiciID"));
+                        resultSet.getString("jmenoProdavajiciho"));
                 coins.add(coin);
             }
         } catch (SQLException throwables) {
@@ -163,10 +163,11 @@ public class SqlDataManager {
         return coins;
     }
 
-    public static List<Coin> getAllCoinsById(int id) {
+    public static List<Coin> getAllCoinsByUsername(String username) {
         List<Coin> coins = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("select * from mince where prodavajiciID='" + id + "'");
+            ResultSet resultSet = statement.executeQuery("select * from mince where jmenoProdavajiciho='"
+                    + username + "'");
             while (resultSet.next()) {
                 Coin coin = new Coin(resultSet.getInt("id"),
                         resultSet.getString("nazev"),
@@ -175,7 +176,7 @@ public class SqlDataManager {
                         resultSet.getString("zeme"),
                         resultSet.getString("kov"),
                         resultSet.getString("obrazekCesta"),
-                        resultSet.getInt("prodavajiciID"));
+                        resultSet.getString("jmenoProdavajiciho"));
                 coins.add(coin);
             }
         } catch (SQLException throwables) {
@@ -186,10 +187,10 @@ public class SqlDataManager {
 
     public static void addCoin(Coin coin) {
         try (Statement statement = connection.createStatement()) {
-            statement.execute("insert into mince(cena, rok, nazev, kov, zeme, obrazekCesta, prodavajiciID) values('" +
+            statement.execute("insert into mince(cena, rok, nazev, kov, zeme, obrazekCesta, jmenoProdavajiciho) values('" +
                     coin.getPrice() + "','" + coin.getYear() + "','" +
                     coin.getName() + "','" + coin.getMetal() + "','" + coin.getCountry() + "','" +
-                    coin.getImagePath() + "','" + coin.getSellerId() + "')");
+                    coin.getImagePath() + "','" + coin.getSellerName() + "')");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -201,6 +202,33 @@ public class SqlDataManager {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public static void addTransaction(Transaction transaction) {
+        try (Statement statement = connection.createStatement()) {
+            statement.execute("insert into transakce(idTransakce, nazevMince, cena, prodavajici, kupujici) " +
+                    "values('" + transaction.getId() + "','" + transaction.getCoinName() + "','" +
+                    transaction.getPrice() + "','" + transaction.getSellerName() + "','" + transaction.getBuyerName()
+                    + "')");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static List<Transaction> getAllTransactions() {
+        List<Transaction> transactions = new ArrayList<>();
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("select * from transakce");
+            while (resultSet.next()) {
+                Transaction transaction = new Transaction(resultSet.getInt("idTransakce"),
+                        resultSet.getString("nazevMince"), resultSet.getDouble("cena"),
+                        resultSet.getString("prodavajici"), resultSet.getString("kupujici"));
+                transactions.add(transaction);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return transactions;
     }
 
     private static Account getAccountByAccountType(ResultSet resultSet) throws SQLException {

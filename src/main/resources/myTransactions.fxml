@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+      prefWidth="800.0" styleClass="pane" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/16"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="account.MyTransactions">
+   <fx:include source="toolbar.fxml" />
+   <Label layoutX="331.0" layoutY="75.0" text="My Transactions">
+      <font>
+         <Font name="System Bold" size="18.0"/>
+      </font>
+   </Label>
+   <ListView fx:id="lvTransactions" layoutX="53.0" layoutY="112.0" prefHeight="446.0" prefWidth="694.0"
+             style="-fx-background-color: #f3ebd3;"/>
+</Pane>

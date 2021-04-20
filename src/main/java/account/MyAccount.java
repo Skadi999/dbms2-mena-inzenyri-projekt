@@ -2,17 +2,12 @@ package account;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Account;
 import model.Session;
 import model.SqlDataManager;
 import util.Util;
-
-import java.io.IOException;
-import java.util.Objects;
 
 public class MyAccount {
     @FXML
@@ -31,6 +26,8 @@ public class MyAccount {
     public Button btnUpdateProfile;
     @FXML
     public Button btnMyListings;
+    @FXML
+    public Button btnMyTransactions;
 
     private final Account acc;
 
@@ -68,5 +65,9 @@ public class MyAccount {
 
     public void onClickMyListings(ActionEvent actionEvent) {
         Util.switchToPage("myListings");
+    }
+
+    public void onClickMyTransactions(ActionEvent actionEvent) {
+        Util.switchToPage("myTransactions");
     }
 }

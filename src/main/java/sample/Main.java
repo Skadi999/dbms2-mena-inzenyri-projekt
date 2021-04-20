@@ -10,17 +10,16 @@ import util.Util;
 
 import java.util.Objects;
 
-//todo Account balance, "my transactions", refactoring, implement todos.
+//todo Account balance, refactoring, implement todos in other pages.
 //todo other account types
 //todo Inbox
-//todo don't forget to remove session testing in acc creation!
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         SqlDataManager.init();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader()
-                .getResource("accountCreation.fxml")));
+                .getResource("login.fxml")));
         primaryStage.setTitle("MENA Inzenyri DBMS Aplikace");
         Scene scene = new Scene(root, 800, 600);
         primaryStage.setScene(scene);

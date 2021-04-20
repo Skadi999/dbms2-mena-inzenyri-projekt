@@ -20,7 +20,7 @@ public class MyListings {
     private final List<Coin> coins;
 
     public MyListings() {
-        coins = SqlDataManager.getAllCoinsById(SqlDataManager.getAccountIdByUsername(Session.username));
+        coins = SqlDataManager.getAllCoinsByUsername(Session.username);
     }
 
     @FXML

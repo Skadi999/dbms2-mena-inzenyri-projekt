@@ -8,23 +8,23 @@ public class Coin {
     private final String country;
     private final String metal;
     private final String imagePath;
-    private final int sellerId;
+    private final String sellerName;
 
     public static final String COIN_FOLDER_PATH = "C:\\Users\\Skadi\\IdeaProjects\\dbms2project\\src\\main\\resources\\Coins\\";
 
-    public Coin(int id, String name, double price, int year, String country, String metal, String imagePath, int sellerId) {
-        this(name, price, year, country, metal, imagePath, sellerId);
+    public Coin(int id, String name, double price, int year, String country, String metal, String imagePath, String sellerName) {
+        this(name, price, year, country, metal, imagePath, sellerName);
         this.id = id;
     }
 
-    public Coin(String name, double price, int year, String country, String metal, String imagePath, int sellerId) {
+    public Coin(String name, double price, int year, String country, String metal, String imagePath, String sellerName) {
         this.name = name;
         this.price = price;
         this.year = year;
         this.country = country;
         this.metal = metal;
         this.imagePath = imagePath;
-        this.sellerId = sellerId;
+        this.sellerName = sellerName;
     }
 
     public int getId() {
@@ -55,8 +55,8 @@ public class Coin {
         return imagePath;
     }
 
-    public int getSellerId() {
-        return sellerId;
+    public String getSellerName() {
+        return sellerName;
     }
 
     @Override

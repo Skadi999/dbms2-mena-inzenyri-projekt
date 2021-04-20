@@ -30,8 +30,8 @@ public class Login {
         String password = txtPassword.getText();
 
         if (SqlDataManager.verifyCredentials(username, password)) {
-            Util.alertConfirmation("Success!", "You have successfully logged in.");
             Session.username = username;
+            Util.switchToPage("myAccount");
         } else {
             Util.alertError("Failure", "Wrong credentials entered.");
         }

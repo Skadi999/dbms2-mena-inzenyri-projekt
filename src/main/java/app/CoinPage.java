@@ -8,7 +8,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.Coin;
+import model.Session;
 import model.SqlDataManager;
+import model.Transaction;
 import util.Util;
 
 import java.io.FileInputStream;
@@ -57,8 +59,14 @@ public class CoinPage {
         //todo condition of having enough balance here and deduction of balance
         Util.alertConfirmation("Success!", "Coin bought! $" + coin.getPrice() +
                 " has been deducted from your account balance.");
+        addCoinToTransaction();
         SqlDataManager.removeCoin(coin.getId());
         coin = null;
         Util.switchToPage("browseCoins");
+    }
+    private void addCoinToTransaction() {
+        Transaction transaction = new Transaction(coin.getName(), coin.getPrice(),
+                String.valueOf(coin.getSellerName()), Session.username);
+        SqlDataManager.addTransaction(transaction);
     }
 }
