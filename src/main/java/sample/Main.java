@@ -10,9 +10,8 @@ import util.Util;
 
 import java.util.Objects;
 
-//todo Account balance, refactoring, implement todos in other pages.
+//todo refactoring
 //todo other account types
-//todo Inbox
 public class Main extends Application {
 
     @Override

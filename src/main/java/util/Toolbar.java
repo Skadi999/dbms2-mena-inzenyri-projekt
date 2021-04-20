@@ -43,7 +43,12 @@ public class Toolbar {
     }
 
     public void onClickContactPage(ActionEvent actionEvent) {
+        if (Session.username == null) {
+            Util.alertError("Error", "Please log in to send a message.");
+            return;
+        }
         Util.switchToPage("contactUs");
+
     }
 
     public void onLogout(ActionEvent actionEvent) {
@@ -52,7 +57,6 @@ public class Toolbar {
             return;
         }
         Session.clear();
-        Util.alertConfirmation("Success!", "You have been logged out.");
         Util.switchToPage("login");
     }
 

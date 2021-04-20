@@ -42,12 +42,45 @@ public class SqlDataManager {
 
     public static void addMessage(Message message) {
         try (Statement statement = connection.createStatement()) {
-            statement.execute("insert into zprava(druhZpravy, text, odesilatel) values('" +
+            statement.execute("insert into zprava(druhZpravy, text, odesilatel, prijemce, predmet) values('" +
                     message.getMessageType() + "','" + message.getMessage() + "','" +
-                    message.getSender() + "')");
+                    message.getSender() + "','" + message.getReceiver() + "','" + message.getSubject() + "')");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public static List<Message> getMessagesByUsername(String username) {
+        List<Message> messages = new ArrayList<>();
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("select * from zprava where prijemce='" + username + "'");
+            while (resultSet.next()) {
+                Message message = new Message(resultSet.getInt("id"),
+                        resultSet.getString("text"),
+                        resultSet.getString("odesilatel"),
+                        resultSet.getString("prijemce"),
+                        resultSet.getString("predmet"));
+                messages.add(message);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return messages;
+    }
+
+    public static Message getMessageById(int id) {
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("select * from zprava where id='" + id + "'");
+            if (resultSet.next()) {
+                return new Message(resultSet.getString("text"),
+                        resultSet.getString("odesilatel"),
+                        resultSet.getString("prijemce"),
+                        resultSet.getString("predmet"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 
     public static ArrayList<Account> getAllAccounts() {

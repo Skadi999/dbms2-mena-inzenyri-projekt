@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import model.Message;
 import model.Session;
 import model.SqlDataManager;
@@ -18,6 +19,8 @@ public class ContactUs {
     public Button btnSubmit;
     @FXML
     public TextArea txtMessage;
+    @FXML
+    public TextField txtSubject;
 
     @FXML
     public void initialize() {
@@ -25,8 +28,8 @@ public class ContactUs {
     }
 
     public void onSubmitMessage(ActionEvent actionEvent) {
-        if (Session.username == null) {
-            Util.alertError("You must be logged in", "Please log in to send a message.");
+        if (isAFieldEmpty()) {
+            Util.alertError("Error", "All fields must be filled.");
             return;
         }
         if (txtMessage.getText().length() > 500) {
@@ -34,17 +37,21 @@ public class ContactUs {
             return;
         }
         MessageType msgType = getMessageType(cmbMessageType.getValue());
-        Message message = new Message(msgType.getNum(), txtMessage.getText(), Session.username);
+        Message message = new Message(msgType.getNum(), txtMessage.getText(), Session.username, txtMessage.getText());
         SqlDataManager.addMessage(message);
         Util.alertConfirmation("Success!", "Message Sent!");
     }
 
     private MessageType getMessageType(String messageType) {
         return switch (messageType) {
-            default -> MessageType.TECHNICAL_ISSUE;
+            default -> MessageType.REGULAR;
+            case "Technical Issue" -> MessageType.TECHNICAL_ISSUE;
             case "Complaint" -> MessageType.COMPLAINT;
             case "Other" -> MessageType.OTHER;
         };
+    }
 
+    private boolean isAFieldEmpty() {
+        return txtMessage.getText().isBlank() || txtSubject.getText().isBlank();
     }
 }

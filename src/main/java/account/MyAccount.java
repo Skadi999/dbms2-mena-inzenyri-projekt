@@ -35,6 +35,10 @@ public class MyAccount {
     public Button btnAddBalance;
     @FXML
     public Label lblBalance;
+    @FXML
+    public Button btnInbox;
+    @FXML
+    public Button btnSendMessage;
 
     private final AccountRegular acc;
 
@@ -84,5 +88,13 @@ public class MyAccount {
         SqlDataManager.updateAccountBalance(Session.username, acc.getBalance() + addedBalance);
         acc.setBalance(acc.getBalance() + addedBalance);
         lblBalance.setText(String.valueOf(acc.getBalance()));
+    }
+
+    public void onClickPageInbox(ActionEvent actionEvent) {
+        Util.switchToPage("inbox");
+    }
+
+    public void onClickSendMessage(ActionEvent actionEvent) {
+        Util.switchToPage("sendMessage");
     }
 }

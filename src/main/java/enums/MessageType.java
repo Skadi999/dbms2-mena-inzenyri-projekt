@@ -1,7 +1,7 @@
 package enums;
 
 public enum MessageType {
-    TECHNICAL_ISSUE(0), COMPLAINT(1), OTHER(2);
+    REGULAR(-1), TECHNICAL_ISSUE(0), COMPLAINT(1), OTHER(2);
 
     private final int num;
 

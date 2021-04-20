@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import model.Coin;
+import model.Message;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -12,6 +13,8 @@ import java.util.Objects;
 public class Util {
     //this method of saving the selected coin is not good
     private static Coin activeCoin;
+    private static Message activeMessage;
+
     private static Scene scene;
 
     //alert without a headerText
@@ -46,6 +49,14 @@ public class Util {
 
     public static void setActiveCoin(Coin activeCoin) {
         Util.activeCoin = activeCoin;
+    }
+
+    public static Message getActiveMessage() {
+        return activeMessage;
+    }
+
+    public static void setActiveMessage(Message activeMessage) {
+        Util.activeMessage = activeMessage;
     }
 
     public static void setScene(Scene scene) {
