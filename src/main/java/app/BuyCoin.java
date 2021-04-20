@@ -7,16 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import model.Coin;
-import model.Session;
-import model.SqlDataManager;
-import model.Transaction;
+import model.*;
 import util.Util;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class CoinPage {
+public class BuyCoin {
     @FXML
     public Label lblName;
     @FXML
@@ -35,11 +32,13 @@ public class CoinPage {
     public Button btnBuyCoin;
 
     private Coin coin;
+    private AccountRegular account;
 
     @FXML
     public void initialize() throws FileNotFoundException {
         coin = Util.getActiveCoin();
         displayCoin();
+        account = SqlDataManager.getRegularAccountByUsername(Session.username);
     }
 
     public void displayCoin() throws FileNotFoundException {
@@ -56,7 +55,10 @@ public class CoinPage {
     }
 
     public void onBuyCoin(ActionEvent actionEvent) {
-        //todo condition of having enough balance here and deduction of balance
+        if (!deductBalance()) {
+            Util.alertError("Error", "You don't have enough money!");
+            return;
+        }
         Util.alertConfirmation("Success!", "Coin bought! $" + coin.getPrice() +
                 " has been deducted from your account balance.");
         addCoinToTransaction();
@@ -64,6 +66,17 @@ public class CoinPage {
         coin = null;
         Util.switchToPage("browseCoins");
     }
+
+    private boolean deductBalance() {
+        if (account.getBalance() >= coin.getPrice()) {
+            double newBalance = account.getBalance() - coin.getPrice();
+            account.setBalance(newBalance);
+            SqlDataManager.updateAccountBalance(Session.username, newBalance);
+            return true;
+        }
+        return false;
+    }
+
     private void addCoinToTransaction() {
         Transaction transaction = new Transaction(coin.getName(), coin.getPrice(),
                 String.valueOf(coin.getSellerName()), Session.username);

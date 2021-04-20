@@ -3,8 +3,9 @@ package account;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import model.Account;
+import model.AccountRegular;
 import model.Session;
 import model.SqlDataManager;
 import util.Util;
@@ -28,11 +29,17 @@ public class MyAccount {
     public Button btnMyListings;
     @FXML
     public Button btnMyTransactions;
+    @FXML
+    public TextField txtBalance;
+    @FXML
+    public Button btnAddBalance;
+    @FXML
+    public Label lblBalance;
 
-    private final Account acc;
+    private final AccountRegular acc;
 
     public MyAccount() {
-        acc = SqlDataManager.getAccountByUsername(Session.username);
+        acc = SqlDataManager.getRegularAccountByUsername(Session.username);
     }
 
     //https://stackoverflow.com/questions/34785417/javafx-fxml-controller-constructor-vs-initialize-method
@@ -40,6 +47,7 @@ public class MyAccount {
     public void initialize() {
         txtName.setText(acc.getName());
         txtLastName.setText(acc.getLastName());
+        lblBalance.setText(String.valueOf(acc.getBalance()));
     }
 
     public void changePassword(ActionEvent actionEvent) {
@@ -69,5 +77,12 @@ public class MyAccount {
 
     public void onClickMyTransactions(ActionEvent actionEvent) {
         Util.switchToPage("myTransactions");
+    }
+
+    public void onAddBalance(ActionEvent actionEvent) {
+        double addedBalance = Double.parseDouble(txtBalance.getText());
+        SqlDataManager.updateAccountBalance(Session.username, acc.getBalance() + addedBalance);
+        acc.setBalance(acc.getBalance() + addedBalance);
+        lblBalance.setText(String.valueOf(acc.getBalance()));
     }
 }

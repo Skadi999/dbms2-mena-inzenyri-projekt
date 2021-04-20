@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -41,35 +42,48 @@
          <Font name="System Bold" size="16.0" />
       </font>
    </Label>
-   <VBox alignment="TOP_CENTER" layoutX="450.0" layoutY="169.0" prefHeight="220.0" prefWidth="190.0"
-         styleClass="genericWindow">
+   <VBox alignment="TOP_CENTER" layoutX="450.0" layoutY="169.0" prefHeight="220.0" prefWidth="190.0" styleClass="genericWindow">
       <Label text="Old Password">
          <font>
-            <Font name="System Bold" size="12.0"/>
+            <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <PasswordField fx:id="txtOldPw" maxWidth="-Infinity" styleClass="textField"/>
+      <PasswordField fx:id="txtOldPw" maxWidth="-Infinity" styleClass="textField" />
       <Label text="New Password">
          <font>
-            <Font name="System Bold" size="12.0"/>
+            <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <PasswordField fx:id="txtNewPw" maxWidth="-Infinity" styleClass="textField"/>
+      <PasswordField fx:id="txtNewPw" maxWidth="-Infinity" styleClass="textField" />
       <Label text="Confirm New Password">
          <font>
-            <Font name="System Bold" size="12.0"/>
+            <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <PasswordField fx:id="txtConfirmNewPw" maxWidth="-Infinity" styleClass="textField"/>
+      <PasswordField fx:id="txtConfirmNewPw" maxWidth="-Infinity" styleClass="textField" />
    </VBox>
-   <Button fx:id="btnMyListings" layoutX="261.0" layoutY="469.0" mnemonicParsing="false" onAction="#onClickMyListings" text="My Listings">
+   <Button fx:id="btnMyListings" layoutX="332.0" layoutY="208.0" mnemonicParsing="false" onAction="#onClickMyListings" text="My Listings">
       <font>
          <Font size="14.0" />
       </font>
    </Button>
-   <Button fx:id="btnMyTransactions" layoutX="400.0" layoutY="469.0" mnemonicParsing="false" onAction="#onClickMyTransactions" text="My Transactions">
+   <Button fx:id="btnMyTransactions" layoutX="316.0" layoutY="270.0" mnemonicParsing="false" onAction="#onClickMyTransactions" text="My Transactions">
       <font>
          <Font size="14.0" />
       </font>
    </Button>
+   <HBox alignment="CENTER" layoutX="34.0" layoutY="444.0" prefHeight="40.0" prefWidth="400.0" styleClass="genericWindow">
+      <Label fx:id="lblBalance" text="Your Balance: $0.00" textFill="#24cc0a">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+   </HBox>
+   <TextField fx:id="txtBalance" layoutX="511.0" layoutY="472.0" styleClass="textField" />
+   <Label layoutX="511.0" layoutY="456.0" text="Add Balance">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font>
+   </Label>
+   <Button fx:id="btnAddBalance" layoutX="621.0" layoutY="505.0" mnemonicParsing="false" onAction="#onAddBalance" text="Add" />
 </Pane>

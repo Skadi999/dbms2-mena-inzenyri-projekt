@@ -3,31 +3,23 @@ package model;
 import enums.AccountType;
 
 public class AccountRegular extends Account {
-    private String listings;
-    private String transactions;
+    private double balance;
 
     public AccountRegular(int id, String username, String password, String name, String lastName, AccountType accountType) {
         super(id, username, password, name, lastName, accountType);
     }
 
-    public AccountRegular(String username, String password, String name, String lastName, AccountType accountType) {
+    public AccountRegular(String username, String password, String name, String lastName, AccountType accountType,
+                          double balance) {
         super(username, password, name, lastName, accountType);
+        this.balance = balance;
     }
 
-
-    public String getListings() {
-        return listings;
+    public double getBalance() {
+        return balance;
     }
 
-    public void setListings(String listings) {
-        this.listings = listings;
-    }
-
-    public String getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(String transactions) {
-        this.transactions = transactions;
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }

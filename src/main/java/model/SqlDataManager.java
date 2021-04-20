@@ -34,7 +34,7 @@ public class SqlDataManager {
                     user.getUsername() + "','" + user.getPassword() + "','" + user.getAccountType().getNum() + "')");
 
             statement.execute("insert into beznyucet(jmenoUctu) values('" +
-                    user.getUsername() + "')");
+                    user.getUsername() + "','" + user.getBalance() + "')");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -50,7 +50,6 @@ public class SqlDataManager {
         }
     }
 
-    //todo create separate method for choosing account based on type
     public static ArrayList<Account> getAllAccounts() {
         ArrayList<Account> accounts = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
@@ -108,17 +107,45 @@ public class SqlDataManager {
         return null;
     }
 
-    public static int getAccountIdByUsername(String username) {
+    public static AccountRegular getRegularAccountByUsername(String username) {
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("select * from ucet where jmenoUctu='"
+                    + username + "'");
+            if (resultSet.next()) {
+                return new AccountRegular(
+                        resultSet.getString("jmenoUctu"),
+                        resultSet.getString("heslo"),
+                        resultSet.getString("jmeno"),
+                        resultSet.getString("prijmeni"),
+                        AccountType.REGULAR,
+                        getAccountBalance(resultSet.getString("jmenoUctu")));
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    private static double getAccountBalance(String username) {
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("select * from beznyucet where jmenoUctu='"
                     + username + "'");
             if (resultSet.next()) {
-                return resultSet.getInt("id");
+                return resultSet.getDouble("zustatek");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return -1;
+        return 0;
+    }
+
+    public static void updateAccountBalance(String username, double newBalance) {
+        try (Statement statement = connection.createStatement()) {
+            statement.execute("update beznyUcet set zustatek ='" + newBalance + "' where jmenoUctu='" + username + "'");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public static Coin getCoinById(int id) {
@@ -233,12 +260,7 @@ public class SqlDataManager {
 
     private static Account getAccountByAccountType(ResultSet resultSet) throws SQLException {
         return switch (resultSet.getInt("typUctu")) {
-            default -> new AccountRegular(
-                    resultSet.getString("jmenoUctu"),
-                    resultSet.getString("heslo"),
-                    resultSet.getString("jmeno"),
-                    resultSet.getString("prijmeni"),
-                    AccountType.getType(resultSet.getInt("typUctu")));
+            default -> getRegularAccountByUsername(resultSet.getString("jmenoUctu"));
             case 1 -> new AccountSupport(
                     resultSet.getString("jmenoUctu"),
                     resultSet.getString("heslo"),

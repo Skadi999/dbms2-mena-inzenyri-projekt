@@ -44,7 +44,7 @@ public class AccountCreation {
                     "must be the same!");
         } else {
             AccountRegular accRegular = new AccountRegular(txtUsername.getText(), txtPassword.getText(),
-                    txtName.getText(), txtLastName.getText(), AccountType.REGULAR);
+                    txtName.getText(), txtLastName.getText(), AccountType.REGULAR, 0);
             SqlDataManager.addRegularUser(accRegular);
             Util.alertConfirmation("Success", "Account Created!");
         }
