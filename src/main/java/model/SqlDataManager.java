@@ -153,6 +153,15 @@ public class SqlDataManager {
         }
     }
 
+    public static void updateAccount(String username, String password, String name, String lastName) {
+        try (Statement statement = connection.createStatement()) {
+            statement.execute("update ucet set jmeno ='" + name +
+                    "', prijmeni='" + lastName + "', heslo='" + password + "' where jmenoUctu='" + username + "'");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public static Account getAccountByUsername(String username) {
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("select * from ucet where jmenoUctu='"
@@ -202,6 +211,20 @@ public class SqlDataManager {
     public static void updateAccountBalance(String username, double newBalance) {
         try (Statement statement = connection.createStatement()) {
             statement.execute("update beznyUcet set zustatek ='" + newBalance + "' where jmenoUctu='" + username + "'");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static void deleteAccount(String username) {
+        try (Statement statement = connection.createStatement()) {
+            statement.execute("delete from beznyucet where jmenoUctu='" + username + "'");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        try (Statement statement = connection.createStatement()) {
+            statement.execute("delete from ucet where jmenoUctu='" + username + "'");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

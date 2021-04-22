@@ -76,21 +76,20 @@
    <Button fx:id="btnSendMessage" layoutX="116.0" layoutY="100.0" mnemonicParsing="false" onAction="#onClickSendMessage" text="Send Message" />
    <Button fx:id="btnTickets" layoutX="34.0" layoutY="530.0" mnemonicParsing="false" onAction="#onClickPageTickets" text="Tickets" visible="false" />
    <Pane fx:id="paneBalance" layoutX="147.0" layoutY="431.0" prefHeight="169.0" prefWidth="505.0">
-      <HBox alignment="CENTER" layoutX="14.0" layoutY="23.0" prefHeight="40.0" prefWidth="400.0"
-            styleClass="genericWindow">
+      <HBox alignment="CENTER" layoutX="14.0" layoutY="23.0" prefHeight="40.0" prefWidth="400.0" styleClass="genericWindow">
          <Label fx:id="lblBalance" text="Your Balance: $0.00" textFill="#24cc0a">
             <font>
-               <Font name="System Bold" size="16.0"/>
+               <Font name="System Bold" size="16.0" />
             </font>
          </Label>
       </HBox>
       <Label layoutX="14.0" layoutY="76.0" text="Add Balance">
          <font>
-            <Font name="System Bold" size="12.0"/>
+            <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="txtBalance" layoutX="14.0" layoutY="93.0" styleClass="textField"/>
-      <Button fx:id="btnAddBalance" layoutX="125.0" layoutY="118.0" mnemonicParsing="false" onAction="#onAddBalance"
-              text="Add"/>
+      <TextField fx:id="txtBalance" layoutX="14.0" layoutY="93.0" styleClass="textField" />
+      <Button fx:id="btnAddBalance" layoutX="125.0" layoutY="118.0" mnemonicParsing="false" onAction="#onAddBalance" text="Add" />
    </Pane>
+   <Button fx:id="btnManageAccounts" layoutX="52.0" layoutY="457.0" mnemonicParsing="false" onAction="#onManageAccounts" text="Manage Accounts" />
 </Pane>

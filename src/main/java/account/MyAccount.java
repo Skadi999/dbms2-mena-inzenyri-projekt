@@ -40,6 +40,8 @@ public class MyAccount {
     public Button btnSendMessage;
     @FXML
     public Button btnTickets;
+    @FXML
+    public Button btnManageAccounts;
 
     private final Account acc;
     public Pane paneBalance;
@@ -73,6 +75,9 @@ public class MyAccount {
     private void handleComponentsVisibility() {
         if (accSupport != null) {
             btnTickets.setVisible(true);
+        }
+        if (accAdmin == null) {
+            btnManageAccounts.setVisible(false);
         }
         if (accRegular == null) {
             paneBalance.setVisible(false);
@@ -128,5 +133,9 @@ public class MyAccount {
 
     public void onClickPageTickets(ActionEvent actionEvent) {
         Util.switchToPage("ticketReply");
+    }
+
+    public void onManageAccounts(ActionEvent actionEvent) {
+        Util.switchToPage("manageAccounts");
     }
 }
