@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="600.0" prefWidth="800.0" styleClass="pane" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="account.AccountCreation">
+<Pane prefHeight="600.0" prefWidth="800.0" styleClass="pane" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AccountCreation">
    <fx:include source="toolbar.fxml" />
    <Label layoutX="312.0" layoutY="82.0" text="Account Creation">
       <font>

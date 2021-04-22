@@ -8,7 +8,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
       prefWidth="800.0" styleClass="pane" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/16"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="account.MyTransactions">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MyTransactions">
    <fx:include source="toolbar.fxml" />
    <Label layoutX="331.0" layoutY="75.0" text="My Transactions">
       <font>

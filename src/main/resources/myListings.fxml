@@ -9,7 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
       prefWidth="800.0" styleClass="pane" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/16"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="account.MyListings">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MyListings">
    <fx:include source="toolbar.fxml" />
    <Label layoutX="352.0" layoutY="69.0" text="My Listings">
       <font>

@@ -9,7 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
       prefWidth="800.0" styleClass="pane" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/16"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.SendMessage">
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SendMessage">
     <fx:include source="toolbar.fxml"/>
     <TextArea fx:id="txtMessage" layoutX="64.0" layoutY="206.0" prefHeight="331.0" prefWidth="673.0"/>
     <Button fx:id="btnSubmit" layoutX="683.0" layoutY="537.0" mnemonicParsing="false" onAction="#onSubmitMessage"

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="pane" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ListCoin">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="pane" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ListCoin">
    <fx:include source="toolbar.fxml" />
    <Label layoutX="337.0" layoutY="76.0" text="List Your Coins">
       <font>
@@ -14,26 +14,26 @@
       </font>
    </Label>
    <Pane layoutX="137.0" layoutY="130.0" prefHeight="341.0" prefWidth="527.0" styleClass="genericWindow">
-      <children>
-         <Label layoutX="60.0" layoutY="32.0" text="Coin Name" />
-         <TextField fx:id="txtName" layoutX="16.0" layoutY="49.0" />
-         <Label layoutX="57.0" layoutY="83.0" text="Year of Mint" />
-         <TextField fx:id="txtYear" layoutX="16.0" layoutY="100.0" />
-         <Label layoutX="74.0" layoutY="136.0" text="Metal" />
-         <TextField fx:id="txtMetal" layoutX="16.0" layoutY="153.0" />
-         <Label layoutX="63.0" layoutY="185.0" text="Coin Price" />
-         <TextField fx:id="txtPrice" layoutX="15.0" layoutY="202.0" />
-         <Label layoutX="69.0" layoutY="240.0" text="Country" />
-         <TextField fx:id="txtCountry" layoutX="16.0" layoutY="257.0" />
-         <Label layoutX="364.0" layoutY="32.0" text="Image Path" />
-         <TextField fx:id="txtImagePath" layoutX="364.0" layoutY="49.0" />
-         <Button fx:id="btnBrowse" layoutX="452.0" layoutY="87.0" mnemonicParsing="false" onAction="#onBrowse" text="Browse.." />
-         <Button fx:id="btnListCoin" layoutX="451.0" layoutY="302.0" mnemonicParsing="false" onAction="#onListCoin" text="List Coin" />
-         <Label layoutX="16.0" layoutY="305.0" text="All fields must be filled." textFill="RED">
-            <font>
-               <Font name="System Bold" size="14.0" />
-            </font>
-         </Label>
-      </children>
+      <Label layoutX="60.0" layoutY="32.0" text="Coin Name"/>
+      <TextField fx:id="txtName" layoutX="16.0" layoutY="49.0"/>
+      <Label layoutX="57.0" layoutY="83.0" text="Year of Mint"/>
+      <TextField fx:id="txtYear" layoutX="16.0" layoutY="100.0"/>
+      <Label layoutX="74.0" layoutY="136.0" text="Metal"/>
+      <TextField fx:id="txtMetal" layoutX="16.0" layoutY="153.0"/>
+      <Label layoutX="63.0" layoutY="185.0" text="Coin Price"/>
+      <TextField fx:id="txtPrice" layoutX="15.0" layoutY="202.0"/>
+      <Label layoutX="69.0" layoutY="240.0" text="Country"/>
+      <TextField fx:id="txtCountry" layoutX="16.0" layoutY="257.0"/>
+      <Label layoutX="364.0" layoutY="32.0" text="Image Path"/>
+      <TextField fx:id="txtImagePath" layoutX="364.0" layoutY="49.0"/>
+      <Button fx:id="btnBrowse" layoutX="452.0" layoutY="87.0" mnemonicParsing="false" onAction="#onBrowse"
+              text="Browse.."/>
+      <Button fx:id="btnListCoin" layoutX="451.0" layoutY="302.0" mnemonicParsing="false" onAction="#onListCoin"
+              text="List Coin"/>
+      <Label layoutX="16.0" layoutY="305.0" text="All fields must be filled." textFill="RED">
+         <font>
+            <Font name="System Bold" size="14.0"/>
+         </font>
+      </Label>
    </Pane>
 </Pane>

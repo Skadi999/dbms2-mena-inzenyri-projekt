@@ -1,4 +1,4 @@
-package account;
+package controllers;
 
 import enums.AccountType;
 import javafx.event.ActionEvent;
@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Account;
 import model.AccountRegular;
-import model.SqlDataManager;
+import util.SqlDataManager;
 import util.Util;
 
 import java.util.ArrayList;

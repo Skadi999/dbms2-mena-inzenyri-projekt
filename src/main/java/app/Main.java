@@ -1,11 +1,11 @@
-package sample;
+package app;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.SqlDataManager;
+import util.SqlDataManager;
 import util.Util;
 
 import java.util.Objects;

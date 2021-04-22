@@ -1,4 +1,4 @@
-package app;
+package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import model.Coin;
 import model.Session;
-import model.SqlDataManager;
+import util.SqlDataManager;
 import util.Util;
 
 import java.io.File;

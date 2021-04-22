@@ -1,4 +1,4 @@
-package app;
+package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.*;
+import util.SqlDataManager;
 import util.Util;
 
 import java.io.FileInputStream;

@@ -1,4 +1,4 @@
-package app;
+package controllers;
 
 import enums.MessageType;
 import javafx.event.ActionEvent;
@@ -9,7 +9,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import model.Message;
 import model.Session;
-import model.SqlDataManager;
+import util.SqlDataManager;
 import util.Util;
 
 public class ContactUs {

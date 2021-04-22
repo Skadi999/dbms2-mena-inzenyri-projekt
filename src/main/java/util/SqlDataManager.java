@@ -1,6 +1,7 @@
-package model;
+package util;
 
 import enums.AccountType;
+import model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,20 +23,19 @@ public final class SqlDataManager {
         try {
             String url = "jdbc:mysql://localhost:3306/mydb";
             String dbUsername = "root";
-            String dbPassword = "benis";
+            String dbPassword = "12345";
             connection = DriverManager.getConnection(url, dbUsername, dbPassword);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
     public static void addRegularUser(AccountRegular user) {
         try (Statement statement = connection.createStatement()) {
             statement.execute("insert into ucet(jmeno, prijmeni, jmenoUctu, heslo, typUctu) values('" +
                     user.getName() + "','" + user.getLastName() + "','" +
                     user.getUsername() + "','" + user.getPassword() + "','" + user.getAccountType().getNum() + "')");
 
-            statement.execute("insert into beznyucet(jmenoUctu) values('" +
+            statement.execute("insert into beznyucet(jmenoUctu, zustatek) values('" +
                     user.getUsername() + "','" + user.getBalance() + "')");
         } catch (SQLException throwables) {
             throwables.printStackTrace();

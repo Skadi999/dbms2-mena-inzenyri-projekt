@@ -1,14 +1,12 @@
-package app;
+package controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import model.Account;
-import model.SqlDataManager;
+import util.SqlDataManager;
 import util.Util;
 
 import java.util.List;
