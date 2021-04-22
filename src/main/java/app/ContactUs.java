@@ -37,7 +37,7 @@ public class ContactUs {
             return;
         }
         MessageType msgType = getMessageType(cmbMessageType.getValue());
-        Message message = new Message(msgType.getNum(), txtMessage.getText(), Session.username, txtMessage.getText());
+        Message message = new Message(msgType.getNum(), txtMessage.getText(), Session.username, txtSubject.getText());
         SqlDataManager.addMessage(message);
         Util.alertConfirmation("Success!", "Message Sent!");
     }

@@ -5,9 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import model.AccountRegular;
-import model.Session;
-import model.SqlDataManager;
+import javafx.scene.layout.Pane;
+import model.*;
 import util.Util;
 
 public class MyAccount {
@@ -39,19 +38,47 @@ public class MyAccount {
     public Button btnInbox;
     @FXML
     public Button btnSendMessage;
+    @FXML
+    public Button btnTickets;
 
-    private final AccountRegular acc;
+    private final Account acc;
+    public Pane paneBalance;
+    private AccountRegular accRegular;
+    private AccountSupport accSupport;
+    private AccountAdmin accAdmin;
 
     public MyAccount() {
-        acc = SqlDataManager.getRegularAccountByUsername(Session.username);
+        acc = SqlDataManager.getAccountByUsername(Session.username);
+        initAccountTypes();
     }
 
     //https://stackoverflow.com/questions/34785417/javafx-fxml-controller-constructor-vs-initialize-method
     @FXML
     public void initialize() {
+        handleComponentsVisibility();
         txtName.setText(acc.getName());
         txtLastName.setText(acc.getLastName());
-        lblBalance.setText(String.valueOf(acc.getBalance()));
+    }
+
+    private void initAccountTypes() {
+        if (acc instanceof AccountRegular) {
+            accRegular = (AccountRegular) acc;
+        } else if (acc instanceof AccountSupport) {
+            accSupport = (AccountSupport) acc;
+        } else {
+            accAdmin = (AccountAdmin) acc;
+        }
+    }
+
+    private void handleComponentsVisibility() {
+        if (accSupport != null) {
+            btnTickets.setVisible(true);
+        }
+        if (accRegular == null) {
+            paneBalance.setVisible(false);
+        } else {
+            lblBalance.setText(String.valueOf(accRegular.getBalance()));
+        }
     }
 
     public void changePassword(ActionEvent actionEvent) {
@@ -84,10 +111,11 @@ public class MyAccount {
     }
 
     public void onAddBalance(ActionEvent actionEvent) {
+        if (accRegular == null) return;
         double addedBalance = Double.parseDouble(txtBalance.getText());
-        SqlDataManager.updateAccountBalance(Session.username, acc.getBalance() + addedBalance);
-        acc.setBalance(acc.getBalance() + addedBalance);
-        lblBalance.setText(String.valueOf(acc.getBalance()));
+        SqlDataManager.updateAccountBalance(Session.username, accRegular.getBalance() + addedBalance);
+        accRegular.setBalance(accRegular.getBalance() + addedBalance);
+        lblBalance.setText(String.valueOf(accRegular.getBalance()));
     }
 
     public void onClickPageInbox(ActionEvent actionEvent) {
@@ -96,5 +124,9 @@ public class MyAccount {
 
     public void onClickSendMessage(ActionEvent actionEvent) {
         Util.switchToPage("sendMessage");
+    }
+
+    public void onClickPageTickets(ActionEvent actionEvent) {
+        Util.switchToPage("ticketReply");
     }
 }

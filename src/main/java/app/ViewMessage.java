@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import model.Message;
+import model.Session;
 import util.Util;
 
 public class ViewMessage {
@@ -34,6 +35,11 @@ public class ViewMessage {
     }
 
     public void onGoBack(ActionEvent actionEvent) {
-        Util.switchToPage("inbox");
+        if (Session.isViewingTicket) {
+            Session.isViewingTicket = false;
+            Util.switchToPage("ticketReply");
+        } else {
+            Util.switchToPage("inbox");
+        }
     }
 }

@@ -20,7 +20,7 @@ public class Message {
         this.messageType = messageType;
         this.message = message;
         this.sender = sender;
-        this.receiver = null;
+        this.receiver = "Support";
         this.subject = subject;
     }
 

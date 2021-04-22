@@ -9,9 +9,7 @@ import model.Session;
 import model.SqlDataManager;
 import util.Util;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Inbox {
     @FXML
@@ -20,12 +18,8 @@ public class Inbox {
     public Button btnViewMessage;
 
     private final List<Message> messages;
-    private Map<Integer, Message> idToMessage;
-    private int index;
 
     public Inbox() {
-        index = 0;
-        idToMessage = new HashMap<>();
         messages = SqlDataManager.getMessagesByUsername(Session.username);
     }
 
@@ -33,8 +27,6 @@ public class Inbox {
     public void initialize() {
         for (Message message : messages) {
             lvInbox.getItems().add(message.toString());
-            idToMessage.put(index, message);
-            index++;
         }
     }
 

@@ -10,8 +10,6 @@ import util.Util;
 
 import java.util.Objects;
 
-//todo refactoring
-//todo other account types
 public class Main extends Application {
 
     @Override

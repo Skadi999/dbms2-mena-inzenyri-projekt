@@ -83,6 +83,32 @@ public class SqlDataManager {
         return null;
     }
 
+    public static void deleteMessageById(int id) {
+        try (Statement statement = connection.createStatement()) {
+            statement.execute("delete from zprava where id='" + id + "'");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static List<Message> getAllMessages() {
+        List<Message> messages = new ArrayList<>();
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("select * from zprava");
+            while (resultSet.next()) {
+                Message message = new Message(resultSet.getInt("id"),
+                        resultSet.getInt("druhZpravy"),
+                        resultSet.getString("text"),
+                        resultSet.getString("odesilatel"),
+                        resultSet.getString("predmet"));
+                messages.add(message);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return messages;
+    }
+
     public static ArrayList<Account> getAllAccounts() {
         ArrayList<Account> accounts = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
