@@ -6,11 +6,19 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SqlDataManager {
-    private static SqlDataManager sqlDataManager;
+/**
+ * A "static" utility class, which is not meant to be instantiated. This class is used for various jdbc methods, it
+ * is the bridge between Java and the MySql Database.
+ * The methods of this class are used for updating entries, adding or deleting new entries.
+ */
+public final class SqlDataManager {
     private static Connection connection;
 
     private SqlDataManager() {
+        throw new UnsupportedOperationException();
+    }
+
+    public static void init() {
         try {
             String url = "jdbc:mysql://localhost:3306/mydb";
             String dbUsername = "root";
@@ -18,12 +26,6 @@ public class SqlDataManager {
             connection = DriverManager.getConnection(url, dbUsername, dbPassword);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-    }
-
-    public static void init() {
-        if (sqlDataManager == null) {
-            sqlDataManager = new SqlDataManager();
         }
     }
 
