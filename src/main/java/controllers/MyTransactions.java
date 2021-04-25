@@ -15,7 +15,7 @@ public class MyTransactions {
     private final List<Transaction> transactions;
 
     public MyTransactions() {
-        transactions = SqlDataManager.getAllTransactions();
+        transactions = SqlDataManager.getAllTransactionsByUsername(Session.username);
     }
 
     @FXML

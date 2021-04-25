@@ -19,6 +19,9 @@ public final class SqlDataManager {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * Connects to the database. This method should only be called once.
+     */
     public static void init() {
         try {
             String url = "jdbc:mysql://localhost:3306/mydb";
@@ -29,6 +32,12 @@ public final class SqlDataManager {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Adds a regular user account. It inserts rows inside the Ucet and BeznyUcet tables.
+     *
+     * @param user the account object
+     */
     public static void addRegularUser(AccountRegular user) {
         try (Statement statement = connection.createStatement()) {
             statement.execute("insert into ucet(jmeno, prijmeni, jmenoUctu, heslo, typUctu) values('" +
@@ -42,6 +51,11 @@ public final class SqlDataManager {
         }
     }
 
+    /**
+     * Adds a new message to the database
+     *
+     * @param message the message object
+     */
     public static void addMessage(Message message) {
         try (Statement statement = connection.createStatement()) {
             statement.execute("insert into zprava(druhZpravy, text, odesilatel, prijemce, predmet) values('" +
@@ -52,6 +66,12 @@ public final class SqlDataManager {
         }
     }
 
+    /**
+     * Returns a list of messages by a specified user
+     *
+     * @param username username whose messages you want to retrieve
+     * @return list of messages by the user
+     */
     public static List<Message> getMessagesByUsername(String username) {
         List<Message> messages = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
@@ -326,10 +346,11 @@ public final class SqlDataManager {
         }
     }
 
-    public static List<Transaction> getAllTransactions() {
+    public static List<Transaction> getAllTransactionsByUsername(String username) {
         List<Transaction> transactions = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("select * from transakce");
+            ResultSet resultSet = statement.executeQuery("select * from transakce where prodavajici='" + username +
+                    "' OR kupujici='" + username + "'");
             while (resultSet.next()) {
                 Transaction transaction = new Transaction(resultSet.getInt("idTransakce"),
                         resultSet.getString("nazevMince"), resultSet.getDouble("cena"),

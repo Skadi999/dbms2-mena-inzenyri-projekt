@@ -38,19 +38,23 @@ public class TicketReply {
 
     @FXML
     public void initialize() {
-        cmbTicketId.setValue(tickets.get(0).getId());
-        for (Message ticket : tickets) {
-            cmbTicketId.getItems().add(ticket.getId());
+        if (tickets.size() > 0) {
+            cmbTicketId.setValue(tickets.get(0).getId());
+            for (Message ticket : tickets) {
+                cmbTicketId.getItems().add(ticket.getId());
+            }
         }
     }
 
     public void onViewMessage(ActionEvent actionEvent) {
+        if (isAFieldNull()) return;
         Session.isViewingTicket = true;
         Util.setActiveMessage(findMessageById(cmbTicketId.getValue()));
         Util.switchToPage("viewMessage");
     }
 
     public void onTicketReply(ActionEvent actionEvent) {
+        if (isAFieldNull()) return;
         int msgId = cmbTicketId.getValue();
         String messageSender = Objects.requireNonNull(findMessageById(msgId)).getSender();
         String subject = Objects.requireNonNull(findMessageById(msgId)).getSubject();
@@ -59,8 +63,12 @@ public class TicketReply {
         SqlDataManager.addMessage(message);
         Util.alertConfirmation("Success", "Message sent.");
         SqlDataManager.deleteMessageById(msgId);
-        //experimental
-        Util.switchToPage("ticketReply");
+        cmbTicketId.getItems().remove(cmbTicketId.getValue());
+        txtReply.clear();
+    }
+
+    private boolean isAFieldNull() {
+        return txtReply == null || cmbTicketId.getValue() == null;
     }
 
     private boolean isSupportMessage(int messageType) {
