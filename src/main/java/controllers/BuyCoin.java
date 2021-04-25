@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.*;
+import util.Session;
 import util.SqlDataManager;
 import util.Util;
 

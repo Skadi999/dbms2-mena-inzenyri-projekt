@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import model.Message;
-import model.Session;
+import util.Session;
 import util.Util;
 
 public class ViewMessage {

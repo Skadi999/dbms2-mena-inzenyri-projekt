@@ -362,7 +362,7 @@ public final class SqlDataManager {
         }
         return transactions;
     }
-
+    //not sql
     private static Account getAccountByAccountType(ResultSet resultSet) throws SQLException {
         return switch (resultSet.getInt("typUctu")) {
             default -> getRegularAccountByUsername(resultSet.getString("jmenoUctu"));

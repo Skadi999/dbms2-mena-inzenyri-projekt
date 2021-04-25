@@ -1,4 +1,4 @@
-package model;
+package util;
 public class Session {
     public static String username;
     public static boolean isViewingTicket = false;

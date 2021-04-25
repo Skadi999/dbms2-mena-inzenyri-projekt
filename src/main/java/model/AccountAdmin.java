@@ -4,10 +4,6 @@ import enums.AccountType;
 
 public class AccountAdmin extends Account {
 
-    public AccountAdmin(int id, String username, String password, String name, String lastName, AccountType accountType) {
-        super(id, username, password, name, lastName, accountType);
-    }
-
     public AccountAdmin(String username, String password, String name, String lastName, AccountType accountType) {
         super(username, password, name, lastName, accountType);
     }

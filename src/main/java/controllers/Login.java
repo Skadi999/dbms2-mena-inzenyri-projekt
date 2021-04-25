@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import model.Session;
+import util.Session;
 import util.SqlDataManager;
 import util.Util;
 

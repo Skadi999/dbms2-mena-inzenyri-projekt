@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import model.Message;
-import model.Session;
+import util.Session;
 import util.SqlDataManager;
 import util.Util;
 

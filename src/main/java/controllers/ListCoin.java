@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import model.Coin;
-import model.Session;
+import util.Session;
 import util.SqlDataManager;
 import util.Util;
 

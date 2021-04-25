@@ -2,7 +2,7 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-import model.Session;
+import util.Session;
 import util.SqlDataManager;
 import model.Transaction;
 

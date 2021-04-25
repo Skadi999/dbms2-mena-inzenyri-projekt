@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import model.Coin;
-import model.Session;
+import util.Session;
 import util.SqlDataManager;
 import util.Util;
 import java.util.List;
@@ -34,6 +34,7 @@ public class BrowseCoins {
     @FXML
     public void viewCoinPage(ActionEvent actionEvent) {
         String item = listCoins.getSelectionModel().getSelectedItem();
+        if (item == null || item.isBlank()) return;
         int id = getItemId(item);
         Coin selectedCoin = SqlDataManager.getCoinById(id);
         Util.setActiveCoin(selectedCoin);
